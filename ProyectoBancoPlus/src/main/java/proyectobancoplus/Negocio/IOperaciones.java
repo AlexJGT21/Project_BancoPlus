@@ -1,0 +1,15 @@
+
+package proyectobancoplus.Negocio;
+
+import proyectobancoplus.Entidades.Transferencia;
+import proyectobancoplus.dtos.NuevoTransferenciaDTO;
+
+/**
+ *
+ * @author maild
+ */
+public interface IOperaciones {
+    
+    public abstract Transferencia realizarTransferencia(NuevoTransferenciaDTO realizarTransferencia) throws NegocioException;
+    
+}
