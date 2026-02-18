@@ -1,4 +1,3 @@
-
 package proyectobancoplus.Negocio;
 
 import proyectobancoplus.Entidades.Transferencia;
@@ -21,26 +20,30 @@ public class TransferenciaBO implements IOperaciones {
 
     @Override
     public Transferencia realizarTransferencia(NuevoTransferenciaDTO dto) throws NegocioException {
-        
+
 //validaciones
-        
         if (dto.getMonto() <= 0) {
-        throw new NegocioException("Error, el monto debe ser mayor a 0$", null);
-                     }
+            throw new NegocioException("Error: el monto debe ser mayor a 0$", null);
+        }
         if (dto.getIdCuentaRemitente().getIdCliente().equals(dto.getIdCuentaDestinatario().getIdCliente())) {
-        throw new NegocioException("Error, no puedes transferir a la misma cuenta", null);
-              }
-      
-            try {  Transferencia nuevaTrans = new Transferencia();
-          nuevaTrans.setMonto(dto.getMonto());
-          nuevaTrans.setIdCuentaRemitente(dto.getIdCuentaRemitente());
-          nuevaTrans.setIdCuentaDestinatario(dto.getIdCuentaDestinatario());
+            throw new NegocioException("Error: no puedes transferir a la misma cuenta", null);
+        }
+
+        try {
+            //este es el mapeo de la dto a la entidad
+            Transferencia nuevaTrans = new Transferencia();
+            nuevaTrans.setMonto(dto.getMonto());
+            
+            //creacion de los datos provisionales para la dao
+            //
+            nuevaTrans.setIdCuentaRemitente(dto.getIdCuentaRemitente());
+            nuevaTrans.setIdCuentaDestinatario(dto.getIdCuentaDestinatario());
 
             return transferenciaDAO.realizarTransferencia(nuevaTrans);
 
         } catch (PersistenciaException e) {
-          
-            throw new NegocioException("No se armó bro" + e.getMessage(), e);
-                }
-}
+
+            throw new NegocioException("Error en la transferencia: " + e.getMessage(), e);
+        }
+    }
 }
