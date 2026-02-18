@@ -9,13 +9,13 @@ public class Transferencia {
     
     private Integer idTransferencia;
     private Float monto;
-    private Cliente idCuentaRemitente; //Puede ser Integer, crear un objeto cliente y jalar la ID?
-    private Cliente idCuentaDestinatario; //Lo mismo de arriba?
+    private Cuenta idCuentaRemitente; //Puede ser Integer, crear un objeto cliente y jalar la ID?
+    private Cuenta idCuentaDestinatario; //Lo mismo de arriba?
 
     public Transferencia() {
     }
 
-    public Transferencia(Integer idTransferencia, Float monto, Cliente idCuentaRemitente, Cliente idCuentaDestinatario) {
+    public Transferencia(Integer idTransferencia, Float monto, Cuenta idCuentaRemitente, Cuenta idCuentaDestinatario) {
         this.idTransferencia = idTransferencia;
         this.monto = monto;
         this.idCuentaRemitente = idCuentaRemitente;
@@ -38,19 +38,19 @@ public class Transferencia {
         this.monto = monto;
     }
 
-    public Cliente getIdCuentaRemitente() {
+    public Cuenta  getIdCuentaRemitente() {
         return idCuentaRemitente;
     }
 
-    public void setIdCuentaRemitente(Cliente idCuentaRemitente) {
+    public void setIdCuentaRemitente(Cuenta idCuentaRemitente) {
         this.idCuentaRemitente = idCuentaRemitente;
     }
 
-    public Cliente getIdCuentaDestinatario() {
+    public Cuenta  getIdCuentaDestinatario() {
         return idCuentaDestinatario;
     }
 
-    public void setIdCuentaDestinatario(Cliente idCuentaDestinatario) {
+    public void setIdCuentaDestinatario(Cuenta idCuentaDestinatario) {
         this.idCuentaDestinatario = idCuentaDestinatario;
     }
 }

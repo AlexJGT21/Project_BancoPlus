@@ -1,7 +1,7 @@
 
 package proyectobancoplus.dtos;
 
-import proyectobancoplus.Entidades.Cliente;
+import proyectobancoplus.Entidades.Cuenta;
 
 /**
  *
@@ -10,10 +10,10 @@ import proyectobancoplus.Entidades.Cliente;
 public class NuevoTransferenciaDTO {
         
     private Float monto;
-    private Cliente idCuentaRemitente; //Puede ser Integer, crear un objeto cliente y jalar la ID?
-    private Cliente idCuentaDestinatario; //Lo mismo de arriba?
+    private Cuenta idCuentaRemitente; //Puede ser Integer, crear un objeto cliente y jalar la ID?
+    private Cuenta idCuentaDestinatario; //Lo mismo de arriba?
 
-    public NuevoTransferenciaDTO(Float monto, Cliente idCuentaRemitente, Cliente idCuentaDestinatario) {
+    public NuevoTransferenciaDTO(Float monto, Cuenta idCuentaRemitente, Cuenta idCuentaDestinatario) {
         this.monto = monto;
         this.idCuentaRemitente = idCuentaRemitente;
         this.idCuentaDestinatario = idCuentaDestinatario;
@@ -23,11 +23,11 @@ public class NuevoTransferenciaDTO {
         return monto;
     }
 
-    public Cliente getIdCuentaRemitente() {
+    public Cuenta getIdCuentaRemitente() {
         return idCuentaRemitente;
     }
 
-    public Cliente getIdCuentaDestinatario() {
+    public Cuenta getIdCuentaDestinatario() {
         return idCuentaDestinatario;
     }
 }
