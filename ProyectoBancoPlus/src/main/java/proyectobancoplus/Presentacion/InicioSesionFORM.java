@@ -156,7 +156,7 @@ public class InicioSesionFORM extends javax.swing.JFrame {
             //luego se agregan mas datos perate
 
             //se pasan los datos
-            MenuForm pantalla2 = new MenuForm(clienteLog,tranferenciaDAO );
+            MenuForm pantalla2 = new MenuForm(clienteLog,op );
             pantalla2.setVisible(true);
 
             // y cerramos el login
