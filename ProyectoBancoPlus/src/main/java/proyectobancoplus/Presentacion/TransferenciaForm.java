@@ -4,16 +4,25 @@
  */
 package proyectobancoplus.Presentacion;
 
+import javax.swing.JOptionPane;
+import proyectobancoplus.Entidades.Cliente;//log
+import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Negocio.IOperaciones;
+import proyectobancoplus.dtos.NuevoTransferenciaDTO;
+
 /**
  *
  * @author melis
  */
 public class TransferenciaForm extends javax.swing.JFrame {
-
+    private IOperaciones transferenciaBO;
+    private Cliente cleinteLog;//cliente de log
     /**
      * Creates new form TransferenciaForm
      */
-    public TransferenciaForm() {
+    public TransferenciaForm(IOperaciones transferenciaBO,Cliente cliente) {
+        this.transferenciaBO=transferenciaBO;
+        this.cleinteLog=cliente;
         initComponents();
     }
 
@@ -38,14 +47,41 @@ public class TransferenciaForm extends javax.swing.JFrame {
         setTitle("Transferencia");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Cuenta", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         lblDestinatario.setText("Destinatario");
 
         lblCantidad.setText("Cantidad");
 
+        txtCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCuentaDestinoActionPerformed(evt);
+            }
+        });
+
+        txtCantidadTransferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadTransferenciaActionPerformed(evt);
+            }
+        });
+
         btnConfirmar.setText("Aceptar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +130,55 @@ public class TransferenciaForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+        try {
+            //valida que los campos no estan vacios
+            if (txtCuentaDestino.getText().isEmpty()||txtCantidadTransferencia.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Llene todos los espacios vacios");
+                return;
+            }
+            
+            //para vcapturar los datos de la interfaz
+            
+            float monto= Float.parseFloat(txtCantidadTransferencia.getText());
+            int idCuentaDestino=Integer.parseInt(txtCuentaDestino.getText());
+            
+            
+            Cuenta cuentaOrigen=(Cuenta)jComboBox1.getSelectedItem();
+            //se crea la cuenat destino con el id para la dto
+            Cuenta cuentaDestino = new Cuenta();
+            cuentaDestino.setIdCuenta(idCuentaDestino);
+            //
+            NuevoTransferenciaDTO dt= new NuevoTransferenciaDTO(monto, null, cuentaOrigen, cuentaDestino);
+            //para  ejecutra ahora si en la bo
+            transferenciaBO.realizarTransferencia(dt);
+            JOptionPane.showMessageDialog(this, "transaccion exitosa!!");
+            this.dispose();
+            
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Error: ingrese cantidades y numeros validos");
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void txtCantidadTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadTransferenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadTransferenciaActionPerformed
+
+    private void txtCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCuentaDestinoActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

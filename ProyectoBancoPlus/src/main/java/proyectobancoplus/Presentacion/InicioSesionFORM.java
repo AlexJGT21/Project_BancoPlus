@@ -4,6 +4,15 @@
  */
 package proyectobancoplus.Presentacion;
 
+import javax.swing.JOptionPane;
+import proyectobancoplus.Entidades.Cliente;
+import proyectobancoplus.Negocio.IOperaciones;
+import proyectobancoplus.Negocio.TransferenciaBO;
+import proyectobancoplus.Persistencia.ConexionBD;
+import proyectobancoplus.Persistencia.IConexionBD;
+import proyectobancoplus.Persistencia.ITransferenciaDAO;
+import proyectobancoplus.Persistencia.TransferenciaDAO;
+
 /**
  *
  * @author melis
@@ -41,9 +50,31 @@ public class InicioSesionFORM extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Ingresar contraseña");
 
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtContraseñaIngresada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaIngresadaActionPerformed(evt);
+            }
+        });
+
         btnAcceder.setText("Acceder");
+        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccederActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,6 +121,60 @@ public class InicioSesionFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtContraseñaIngresadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaIngresadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaIngresadaActionPerformed
+
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
+       //nos llevamos los datos ingresados por el ususario
+        String us=txtUsuario.getText();
+        String contra=txtContraseñaIngresada.getText();
+        
+        //ahora validaremos campos solamente
+        if (us.isEmpty() || contra.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario y contraseña ");
+            return;
+        }
+        
+        try {
+            
+                IConexionBD conex= new ConexionBD();
+           //ahorita checo poq da error
+           ITransferenciaDAO transferenciaDAO = new TransferenciaDAO(conex);
+                
+                IOperaciones trBO= new TransferenciaBO(transferenciaDAO);
+                
+                //aqui va la simulacion del login
+                Cliente clienteLog = new Cliente();
+            //estos era un usuario de prueba solaente
+            clienteLog.setIdCliente(9);
+            clienteLog.setNombre("Usuario Jose");
+            clienteLog.setApellidoPaterno(" de prueba");
+            //luego se agregan mas datos perate
+                
+            //se pasan los datos
+            MenuForm pantalla2 = new MenuForm(clienteLog, trBO);
+            pantalla2.setVisible(true);
+            
+            // y cerramos el login
+            this.dispose();
+        } catch (Exception e) {
+JOptionPane.showMessageDialog(this, "no se puede conectar el sistema,sorry");
+            e.printStackTrace();
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAccederActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -133,4 +218,8 @@ public class InicioSesionFORM extends javax.swing.JFrame {
     private javax.swing.JTextField txtContraseñaIngresada;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private ConexionBD ConexionBD() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -4,17 +4,28 @@
  */
 package proyectobancoplus.Presentacion;
 
+import javax.swing.JOptionPane;
+import proyectobancoplus.Entidades.Cliente;
+import proyectobancoplus.Negocio.IOperaciones;
+
 /**
  *
  * @author melis
  */
 public class MenuForm extends javax.swing.JFrame {
 
+    private Cliente clienteA;
+    private IOperaciones transferenciaBO;
+
     /**
      * Creates new form MenuForm
      */
-    public MenuForm() {
+    public MenuForm(Cliente cliente, IOperaciones trBO) {
+        this.clienteA = cliente;
+        this.transferenciaBO = trBO;
         initComponents();
+        setTitle("Menu Principal----BancoPlus");
+
     }
 
     /**
@@ -26,61 +37,117 @@ public class MenuForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
+        btnMisCuentas = new javax.swing.JButton();
+        btnTrasferencias = new javax.swing.JButton();
+        btnRetiroSinCuenta = new javax.swing.JButton();
+        btnCrearMasCuentas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Cerrar sesion");
+        btnCerrarSesion.setText("Cerrar sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Mis cuentas");
+        btnMisCuentas.setText("Mis cuentas");
+        btnMisCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMisCuentasActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Tranferir");
+        btnTrasferencias.setText("Tranferir");
+        btnTrasferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrasferenciasActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Retirar si cuenta");
+        btnRetiroSinCuenta.setText("Retirar sin cuenta");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Crear nueva Cuenta");
+        btnCrearMasCuentas.setText("Crear nueva Cuenta");
+        btnCrearMasCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearMasCuentasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton5)
-                .addGap(41, 41, 41)
+                .addGap(17, 17, 17)
+                .addComponent(btnCrearMasCuentas)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(btnRetiroSinCuenta)
+                    .addComponent(btnMisCuentas)
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(btnTrasferencias))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton5))
-                .addGap(48, 48, 48)
-                .addComponent(jButton2)
-                .addGap(37, 37, 37)
-                .addComponent(jButton3)
-                .addGap(41, 41, 41)
-                .addComponent(jButton4)
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(btnCrearMasCuentas))
+                .addGap(30, 30, 30)
+                .addComponent(btnMisCuentas)
+                .addGap(29, 29, 29)
+                .addComponent(btnTrasferencias)
+                .addGap(26, 26, 26)
+                .addComponent(btnRetiroSinCuenta)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void btnCrearMasCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMasCuentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearMasCuentasActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+       int confirm = JOptionPane.showConfirmDialog(this, "cerrar la sesion?","Salir",JOptionPane.YES_NO_OPTION);
+        if (confirm==JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnMisCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisCuentasActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Se estan busvando las cuentas");
+    }//GEN-LAST:event_btnMisCuentasActionPerformed
+
+    private void btnTrasferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasferenciasActionPerformed
+        // TODO add your handling code here:;
+        TransferenciaForm pantallaTransferencias = new TransferenciaForm(transferenciaBO,clienteA);
+        //mostramos la pantalla con cliente logeado
+        pantallaTransferencias.setVisible(true);
+
+    }//GEN-LAST:event_btnTrasferenciasActionPerformed
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showConfirmDialog(this,"Se generara un folio, porfavor espere");
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+
     /**
-     * @param args the command line arguments
-//     */
+     * @param args the command line arguments //
+     */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -114,10 +181,11 @@ public class MenuForm extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnCrearMasCuentas;
+    private javax.swing.JButton btnMisCuentas;
+    private javax.swing.JButton btnRetiroSinCuenta;
+    private javax.swing.JButton btnTrasferencias;
     // End of variables declaration//GEN-END:variables
+
 }

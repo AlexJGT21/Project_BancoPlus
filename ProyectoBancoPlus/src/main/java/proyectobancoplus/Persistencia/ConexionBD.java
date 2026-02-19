@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author Alex García Trejo
  */
-public class ConexionBD {
+public class ConexionBD implements IConexionBD{
     
     private static final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/bancoPlus";
     private static final String USUARIO = "root";
@@ -18,13 +18,24 @@ public class ConexionBD {
     //private static final String CONTRASENIA = "ITSON"; 
     //private static final String CONTRASENIA = ""; 
     
-    public static Connection crearConexion() throws SQLException{
-         Connection conexion = DriverManager.getConnection(
-            ConexionBD.CADENA_CONEXION, 
-            ConexionBD.USUARIO, 
-            ConexionBD.CONTRASENIA
-        );
-        return conexion;
+ 
+//    public static Connection crearConexion() throws SQLException{
+//         Connection conexion = DriverManager.getConnection(
+//            ConexionBD.CADENA_CONEXION, 
+//            ConexionBD.USUARIO, 
+//            ConexionBD.CONTRASENIA
+//        );
+//        return conexion;
+//    }
+   
+    //solo es para ver si si conecta esto, es temporal
+
+    @Override
+    public Connection crearConexion() throws SQLException {
+        return DriverManager.getConnection(CADENA_CONEXION,USUARIO,CONTRASENIA);
+
     }
+
+   
     
 }
