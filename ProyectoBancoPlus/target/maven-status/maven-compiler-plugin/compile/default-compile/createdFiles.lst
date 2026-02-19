@@ -3,6 +3,8 @@ proyectobancoplus\dtos\NuevoClienteDTO.class
 proyectobancoplus\Negocio\NegocioException.class
 proyectobancoplus\Persistencia\ConexionBD.class
 proyectobancoplus\Persistencia\PersistenciaException.class
+proyectobancoplus\Persistencia\TransferenciaDAO.class
+Validadores\ValidadorTransferencia.class
 proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
 proyectobancoplus\Entidades\Cuenta.class
 proyectobancoplus\Negocio\IOperaciones.class

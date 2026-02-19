@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class ValidadorTransferencia {
     
     public boolean idCuentaDestinatario(String idCuentaDestinatario) {
-        String regex = "^[A-ZÁ-Ýa-zá-ýÑñ ]{1,50}$";
+        String regex = "\\d+";
         return validar(idCuentaDestinatario, regex);
     }        
     
