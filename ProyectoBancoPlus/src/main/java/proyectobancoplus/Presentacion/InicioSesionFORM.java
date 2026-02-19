@@ -9,9 +9,9 @@ import proyectobancoplus.Entidades.Cliente;
 import proyectobancoplus.Negocio.IOperaciones;
 import proyectobancoplus.Negocio.TransferenciaBO;
 import proyectobancoplus.Persistencia.ConexionBD;
-import proyectobancoplus.Persistencia.IConexionBD;
 import proyectobancoplus.Persistencia.ITransferenciaDAO;
 import proyectobancoplus.Persistencia.TransferenciaDAO;
+import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 
 /**
  *
@@ -130,40 +130,39 @@ public class InicioSesionFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaIngresadaActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-       //nos llevamos los datos ingresados por el ususario
-        String us=txtUsuario.getText();
-        String contra=txtContraseñaIngresada.getText();
-        
+        //nos llevamos los datos ingresados por el ususario
+        String us = txtUsuario.getText();
+        String contra = txtContraseñaIngresada.getText();
+        IOperaciones op;
         //ahora validaremos campos solamente
         if (us.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un usuario y contraseña ");
             return;
         }
-        
         try {
-            
-                IConexionBD conex= new ConexionBD();
-           //ahorita checo poq da error
-           ITransferenciaDAO transferenciaDAO = new TransferenciaDAO(conex);
-                
-                IOperaciones trBO= new TransferenciaBO(transferenciaDAO);
-                
-                //aqui va la simulacion del login
-                Cliente clienteLog = new Cliente();
+
+            //   ahorita checo poq da error
+//           ITransferenciaDAO transferenciaDAO = new NuevaTransferenciaDTO();
+            ITransferenciaDAO tranferenciaDAO = new TransferenciaDAO();
+
+//       no se puede convertir     IOperaciones trBO = new NuevaTransferencia();
+
+            //aqui va la simulacion del login
+            Cliente clienteLog = new Cliente();
             //estos era un usuario de prueba solaente
             clienteLog.setIdCliente(9);
             clienteLog.setNombre("Usuario Jose");
             clienteLog.setApellidoPaterno(" de prueba");
             //luego se agregan mas datos perate
-                
+
             //se pasan los datos
-            MenuForm pantalla2 = new MenuForm(clienteLog, trBO);
+            MenuForm pantalla2 = new MenuForm(clienteLog,tranferenciaDAO );
             pantalla2.setVisible(true);
-            
+
             // y cerramos el login
             this.dispose();
         } catch (Exception e) {
-JOptionPane.showMessageDialog(this, "no se puede conectar el sistema,sorry");
+            JOptionPane.showMessageDialog(this, "no se puede conectar el sistema,sorry");
             e.printStackTrace();
         }
 
