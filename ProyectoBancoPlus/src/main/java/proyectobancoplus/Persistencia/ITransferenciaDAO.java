@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 
 package proyectobancoplus.Persistencia;
 /**
@@ -10,11 +6,12 @@ package proyectobancoplus.Persistencia;
  */
 import java.util.List;
 import proyectobancoplus.Entidades.Transferencia;
+import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 
 public interface ITransferenciaDAO {
 
 //contrato 1 registrar transferencia
-    public Transferencia realizarTransferencia(Transferencia transferencia) throws PersistenciaException;
+    public Transferencia realizarTransferencia(NuevoTransferenciaDTO nuevaTransferencia) throws PersistenciaException;
 
 // contrato 2 consultar los movimientos
     public List<Transferencia> consultarMovimientosCuenta(Integer idCuenta) throws PersistenciaException;

@@ -29,21 +29,22 @@ public class TransferenciaBO implements IOperaciones {
             throw new NegocioException("Error: no puedes transferir a la misma cuenta", null);
         }
 
-        try {
-            //este es el mapeo de la dto a la entidad
-            Transferencia nuevaTrans = new Transferencia();
-            nuevaTrans.setMonto(dto.getMonto());
-            
-            //creacion de los datos provisionales para la dao
-            //
-            nuevaTrans.setIdCuentaRemitente(dto.getIdCuentaRemitente());
-            nuevaTrans.setIdCuentaDestinatario(dto.getIdCuentaDestinatario());
-
-            return transferenciaDAO.realizarTransferencia(nuevaTrans);
-
-        } catch (PersistenciaException e) {
-
-            throw new NegocioException("Error en la transferencia: " + e.getMessage(), e);
-        }
+//        try {
+//            //este es el mapeo de la dto a la entidad
+//            Transferencia nuevaTrans = new Transferencia();
+//            nuevaTrans.setMonto(dto.getMonto());
+//            
+//            //creacion de los datos provisionales para la dao
+//            //
+//            nuevaTrans.setIdCuentaRemitente(dto.getIdCuentaRemitente());
+//            nuevaTrans.setIdCuentaDestinatario(dto.getIdCuentaDestinatario());
+//
+//           // return transferenciaDAO.realizarTransferencia(nuevaTrans);
+//
+//        } catch (PersistenciaException ex) {
+//
+//            throw new NegocioException("Error en la transferencia: " + ex.getMessage());
+//        }
+        return null;
     }
 }
