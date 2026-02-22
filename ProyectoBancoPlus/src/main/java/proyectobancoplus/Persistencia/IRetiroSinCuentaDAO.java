@@ -11,5 +11,5 @@ import proyectobancoplus.dtos.NuevoRetiroSinCuentaDTO;
 public interface IRetiroSinCuentaDAO {
     
     //Contrato 1: Retiro de dinero sin cuenta por parte de un tercero
-    public RetiroSinCuenta retiroSinCuenta(NuevoRetiroSinCuentaDTO retiroSinCuentaDTO) throws PersistenciaException;
+    public RetiroSinCuenta retiroSinCuenta(NuevoRetiroSinCuentaDTO retiroSinCuenta) throws PersistenciaException;
 }

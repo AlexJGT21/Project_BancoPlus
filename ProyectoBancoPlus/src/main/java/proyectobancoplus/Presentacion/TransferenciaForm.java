@@ -7,7 +7,6 @@ package proyectobancoplus.Presentacion;
 import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cliente;//log
 import proyectobancoplus.Entidades.Cuenta;
-import proyectobancoplus.Negocio.IOperaciones;
 import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 
 /**
@@ -15,16 +14,16 @@ import proyectobancoplus.dtos.NuevoTransferenciaDTO;
  * @author melis
  */
 public class TransferenciaForm extends javax.swing.JFrame {
-    private IOperaciones transferenciaBO;
+//    private IOperaciones transferenciaBO;
     private Cliente cleinteLog;//cliente de log
     /**
      * Creates new form TransferenciaForm
      */
-    public TransferenciaForm(IOperaciones transferenciaBO,Cliente cliente) {
-        this.transferenciaBO=transferenciaBO;
-        this.cleinteLog=cliente;
-        initComponents();
-    }
+//    public TransferenciaForm(IOperaciones transferenciaBO,Cliente cliente) {
+//        this.transferenciaBO=transferenciaBO;
+//        this.cleinteLog=cliente;
+//        initComponents();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,7 +156,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
             //
             NuevoTransferenciaDTO dt= new NuevoTransferenciaDTO(monto, null, cuentaOrigen, cuentaDestino);
             //para  ejecutra ahora si en la bo
-            transferenciaBO.realizarTransferencia(dt);
+//            transferenciaBO.realizarTransferencia(dt);
             JOptionPane.showMessageDialog(this, "transaccion exitosa!!");
             this.dispose();
             

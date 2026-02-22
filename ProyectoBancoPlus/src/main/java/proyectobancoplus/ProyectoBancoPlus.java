@@ -4,6 +4,7 @@ package proyectobancoplus;
 import proyectobancoplus.Entidades.Cliente;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
 import proyectobancoplus.Presentacion.MenuForm;
+import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 
 /**
@@ -16,8 +17,8 @@ public class ProyectoBancoPlus {
 
         System.out.println("probando probando we");
         
-        
-        MenuForm mf = new MenuForm(cliente, trBO);
+        RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM();
+        rsc.setVisible(true);
         
     }
     public void iniciarBanca() {

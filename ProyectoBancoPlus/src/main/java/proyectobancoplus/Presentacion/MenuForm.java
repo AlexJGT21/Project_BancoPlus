@@ -22,7 +22,6 @@ public class MenuForm extends javax.swing.JFrame {
         this.transferenciaBO = trBO;
         initComponents();
         setTitle("Menu Principal----BancoPlus");
-
     }
 
     /**
@@ -138,15 +137,17 @@ public class MenuForm extends javax.swing.JFrame {
 
     private void btnTrasferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasferenciasActionPerformed
         // TODO add your handling code here:;
-        TransferenciaForm pantallaTransferencias = new TransferenciaForm(transferenciaBO,clienteA);
+//        TransferenciaForm pantallaTransferencias = new TransferenciaForm(transferenciaBO,clienteA);
         //mostramos la pantalla con cliente logeado
-        pantallaTransferencias.setVisible(true);
+//        pantallaTransferencias.setVisible(true);
 
     }//GEN-LAST:event_btnTrasferenciasActionPerformed
 
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showConfirmDialog(this,"Se generara un folio, porfavor espere");
+    
+        RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM();
+        rsc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,7 +11,7 @@ public class RetiroSinCuenta {
     
     //Uso del ENUM public para poder acceder a los valores
     public enum EstadoOperacion {
-        POR_COBRAR, COBRADO, NO_COBRADO;
+        COBRADO, NO_COBRADO;
     }
     
     private Integer idRetiroSC;
@@ -21,7 +21,7 @@ public class RetiroSinCuenta {
     private EstadoOperacion estadoOperacion;
     private GregorianCalendar fechaHoraRegistro; //"yyyy-MM-dd HH:mm:ss"
     private GregorianCalendar fechaHoraVencimiento;    //"yyyy-MM-dd HH:mm:ss"
-    private Cuenta numCuenta;
+    private Cuenta numCuenta; //IdCuenta
     
     public RetiroSinCuenta() {
         //Vacio

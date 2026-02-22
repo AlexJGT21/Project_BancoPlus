@@ -6,7 +6,6 @@ package proyectobancoplus.Presentacion;
 
 import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cliente;
-import proyectobancoplus.Negocio.IOperaciones;
 import proyectobancoplus.Negocio.TransferenciaBO;
 import proyectobancoplus.Persistencia.ConexionBD;
 import proyectobancoplus.Persistencia.ITransferenciaDAO;
@@ -133,7 +132,7 @@ public class InicioSesionFORM extends javax.swing.JFrame {
         //nos llevamos los datos ingresados por el ususario
         String us = txtUsuario.getText();
         String contra = txtContraseñaIngresada.getText();
-        IOperaciones op;
+//        IOperaciones op;
         //ahora validaremos campos solamente
         if (us.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un usuario y contraseña ");
