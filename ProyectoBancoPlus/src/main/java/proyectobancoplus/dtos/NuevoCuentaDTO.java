@@ -18,16 +18,22 @@ public class NuevoCuentaDTO {
         ACTIVA, CANCELADA
     }
     
+    private Integer numCuenta;
     private Float saldoMXN;
     private EstadoCuenta estado; //ACTIVA, CANCELADA
     private Cliente idCliente;
 
-    public NuevoCuentaDTO(Float saldoMXN, EstadoCuenta estado, Cliente idCliente) {
+    public NuevoCuentaDTO(Integer numCuenta, Float saldoMXN, EstadoCuenta estado, Cliente idCliente) {
+        this.numCuenta = numCuenta;
         this.saldoMXN = saldoMXN;
         this.estado = estado;
         this.idCliente = idCliente;
     }
 
+    public Integer getNumCuenta() {
+        return numCuenta;
+    }
+    
     public Float getSaldoMXN() {
         return saldoMXN;
     }

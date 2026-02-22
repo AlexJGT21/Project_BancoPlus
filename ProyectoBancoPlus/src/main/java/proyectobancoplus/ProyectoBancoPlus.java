@@ -1,7 +1,9 @@
+
 package proyectobancoplus;
 
 import proyectobancoplus.Entidades.Cliente;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
+import proyectobancoplus.Presentacion.MenuForm;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 
 /**
@@ -15,15 +17,17 @@ public class ProyectoBancoPlus {
         System.out.println("probando probando we");
         
         
+        MenuForm mf = new MenuForm(cliente, trBO);
+        
     }
     public void iniciarBanca() {
         InicioSesionFORM llave = new InicioSesionFORM();
         llave.setVisible(true);
     }
-    public void mostrarMenu(Cliente cliente){
-    TransferenciaForm transferencia = new TransferenciaForm(this,transferenciaBO, cliente);
-    transferencia.setVisible(true);
-    }
+//    public void mostrarMenu(Cliente cliente){
+//    TransferenciaForm transferencia = new TransferenciaForm(this,transferenciaBO, cliente);
+//    transferencia.setVisible(true);
+//    }
 
    /*
     *metodos pendinetes 

@@ -14,11 +14,12 @@ public class Cuenta {
      * 1. Activa: Esta en uso
      * 2. Cancelada: No puede realizar ninguna operación
      */
-    enum EstadoCuenta {
+    public enum EstadoCuenta {
         ACTIVA, CANCELADA
     }
     
     private Integer idCuenta;
+    private Integer numCuenta;
     private Float saldoMXN;
     private EstadoCuenta estado; //ACTIVA, CANCELADA
     private GregorianCalendar fechaApertura;
@@ -28,8 +29,9 @@ public class Cuenta {
     public Cuenta() {
     }
 
-    public Cuenta(Integer idCuenta, Float saldoMXN, EstadoCuenta estado, GregorianCalendar fechaApertura, Cliente idCliente, String contraseña) {
+    public Cuenta(Integer idCuenta, Integer numCuenta, Float saldoMXN, EstadoCuenta estado, GregorianCalendar fechaApertura, Cliente idCliente, String contraseña) {
         this.idCuenta = idCuenta;
+        this.numCuenta = numCuenta;
         this.saldoMXN = saldoMXN;
         this.estado = estado;
         this.fechaApertura = fechaApertura;
@@ -43,6 +45,14 @@ public class Cuenta {
 
     public void setIdCuenta(Integer idCuenta) {
         this.idCuenta = idCuenta;
+    }
+
+    public Integer getNumCuenta() {
+        return numCuenta;
+    }
+
+    public void setNumCuenta(Integer numCuenta) {
+        this.numCuenta = numCuenta;
     }
 
     public Float getSaldoMXN() {

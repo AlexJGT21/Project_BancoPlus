@@ -4,12 +4,11 @@ import proyectobancoplus.Entidades.Transferencia;
 import proyectobancoplus.Persistencia.ITransferenciaDAO;
 import proyectobancoplus.Persistencia.PersistenciaException;
 import proyectobancoplus.dtos.NuevoTransferenciaDTO;
-import proyectobancoplus.Entidades.Cuenta;
 /**
  *
  * @author Alex García Trejo
  */
-public class TransferenciaBO implements IOperaciones {
+public class TransferenciaBO implements ITransferencias {
 
 //la interfaz q ya cree para guardar datos
     private ITransferenciaDAO transferenciaDAO;
