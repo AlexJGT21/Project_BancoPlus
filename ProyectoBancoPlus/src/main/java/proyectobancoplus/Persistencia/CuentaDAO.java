@@ -1,0 +1,79 @@
+
+public class CuentaDAO implements ICuentaDAO {
+
+    private List<Cuenta> cuentasActivas;
+
+    @Override
+    public Cuenta agregarCuenta(Cuenta nuevaCuenta) throws PersistenciaException {
+        //aqui se genera el codigo random de 8 digitos
+        int numeroCuentaGenerado = (int) (Math.random() * 90000000) + 10000000;
+        
+        String sql = "INSERT INTO cuentas (idCuenta, saldoMXN, estado, idCliente) VALUES (?, ?, 'ACTIVA', ?)";
+        
+        try (Connection conn = ConexionBD.crearConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setInt(1, numeroCuentaGenerado);
+            ps.setFloat(2, nuevaCuenta.getSaldoMXN());
+            ps.setInt(3, nuevaCuenta.getIdCliente().getIdCliente());
+            
+            ps.executeUpdate();
+            
+            nuevaCuenta.setIdCuenta(numeroCuentaGenerado);
+            return nuevaCuenta;
+            
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al registrar al cliente en sql", null);
+        }
+    }
+    
+    @Override
+    public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
+
+//logica del dar de bajar cuenta
+        //codigo pa sql
+        String sql = "UPDATE cuentas SET estado = 'CANCELADA' WHERE idCuenta = ?";
+        
+        try (Connection conn = ConexionBD.crearConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setInt(1, idCuenta);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al cancelar la cuenta del cliente en sql", null);
+        }
+    }
+
+        public List<Cuenta> obtenerCuentasActivas() throws PersistenciaException {
+        cuentasActivas = new ArrayList<>();
+        
+        try {
+            Connection connection = ConexionBD.crearConexion();
+            
+            String selectSQL = """
+                               SELECT idCuenta, numCuenta, saldoMXN
+                               FROM cuentas
+                               WHERE estado = 'activa';
+                               """;
+            
+            Statement querySQL = connection.createStatement();
+            ResultSet result = querySQL.executeQuery(selectSQL);
+            
+            while (result.next()) {
+                int idCuenta = result.getInt(1);
+                int numCuenta = result.getInt(2);
+                float saldoMXN = result.getFloat(3);
+                cuentasActivas.add(new Cuenta(idCuenta, numCuenta, saldoMXN, null, null, null, null));                
+            }
+            return cuentasActivas;
+        } catch (SQLException e) {
+            LOGGER.severe(e.getMessage());
+            throw new PersistenciaException("No se pudo consultar cuentas", e);
+        }
+    }
+}
+
+
+
+
