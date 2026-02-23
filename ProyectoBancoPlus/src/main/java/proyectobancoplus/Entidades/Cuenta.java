@@ -94,4 +94,9 @@ public class Cuenta {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    @Override
+    public String toString() {
+        return "Número de Cuenta: " + numCuenta;
+    }
 }

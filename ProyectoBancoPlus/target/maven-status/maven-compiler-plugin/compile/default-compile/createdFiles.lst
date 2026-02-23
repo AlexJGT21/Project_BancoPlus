@@ -1,6 +1,9 @@
+proyectobancoplus\Entidades\Transferencia.class
+proyectobancoplus\Presentacion\TransferenciaForm$4.class
 proyectobancoplus\dtos\NuevoRetiroSinCuentaDTO.class
 proyectobancoplus\Presentacion\MenuForm$4.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$4.class
+<<<<<<< HEAD
 proyectobancoplus\Presentacion\BajaCuentaForm.class
 proyectobancoplus\Presentacion\TransferenciaForm$2.class
 proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
@@ -29,29 +32,83 @@ proyectobancoplus\dtos\NuevoTransferenciaDTO.class
 proyectobancoplus\Entidades\Transferencia.class
 proyectobancoplus\Presentacion\informacionTransferencia$2.class
 proyectobancoplus\Presentacion\TransferenciaForm$4.class
+=======
+
+proyectobancoplus\dtos\NuevoRetiroSinCuentaDTO.class
+proyectobancoplus\Presentacion\MenuForm$4.class
+
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
 proyectobancoplus\Presentacion\InicioSesionFORM$3.class
 proyectobancoplus\Negocio\NegocioException.class
 proyectobancoplus\Persistencia\ConexionBD.class
+proyectobancoplus\Presentacion\TransferenciaForm$2.class
 proyectobancoplus\Persistencia\RetiroSinCuentaDAO.class
+<<<<<<< HEAD
 proyectobancoplus\Presentacion\AltaCuentaForm.class
+=======
+proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
+proyectobancoplus\Entidades\Cuenta.class
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
 proyectobancoplus\Entidades\RetiroSinCuenta.class
 proyectobancoplus\Presentacion\InicioSesionFORM.class
+proyectobancoplus\Entidades\Cliente.class
+proyectobancoplus\Persistencia\IRetiroSinCuentaDAO.class
+
 proyectobancoplus\dtos\NuevoCuentaDTO$EstadoCuenta.class
+
+
 proyectobancoplus\Negocio\ITransferencias.class
 proyectobancoplus\Persistencia\ICuentaDAO.class
+<<<<<<< HEAD
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$2.class
+=======
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
 proyectobancoplus\Persistencia\ITransferenciaDAO.class
+proyectobancoplus\Negocio\CuentaBO.class
 proyectobancoplus\Presentacion\MenuForm$3.class
+<<<<<<< HEAD
 proyectobancoplus\Presentacion\AltaCuentaForm$3.class
+=======
+proyectobancoplus\Presentacion\TransferenciaForm.class
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
 proyectobancoplus\Negocio\IRetiroSinCuenta.class
+proyectobancoplus\Presentacion\InicioSesionFORM$4.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$3.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM.class
 proyectobancoplus\Presentacion\MenuForm$5.class
 proyectobancoplus\Presentacion\TransferenciaForm$3.class
+proyectobancoplus\Presentacion\informacionTransferencia$1.class
 proyectobancoplus\Presentacion\TransferenciaForm$5.class
+proyectobancoplus\dtos\NuevoClienteDTO.class
+proyectobancoplus\Persistencia\PersistenciaException.class
+proyectobancoplus\Presentacion\RetiroSinCuentaFORM$5.class
+
+proyectobancoplus\Presentacion\MenuForm$5.class
+proyectobancoplus\Persistencia\PersistenciaException.class
+
+proyectobancoplus\Persistencia\TransferenciaDAO.class
+Validadores\ValidadorTransferencia.class
 proyectobancoplus\Presentacion\InicioSesionFORM$2.class
+proyectobancoplus\Presentacion\InicioSesionFORM$1.class
 proyectobancoplus\Presentacion\MenuForm.class
+<<<<<<< HEAD
+proyectobancoplus\Persistencia\CuentaDAO.class
+=======
+
+proyectobancoplus\Presentacion\informacionTransferencia.class
+proyectobancoplus\Presentacion\MenuForm$1.class
+proyectobancoplus\Presentacion\TransferenciaForm$1.class
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
+proyectobancoplus\Entidades\RetiroSinCuenta$EstadoOperacion.class
+proyectobancoplus\Presentacion\MenuForm$2.class
+proyectobancoplus\Presentacion\RetiroSinCuentaFORM$1.class
+proyectobancoplus\ProyectoBancoPlus.class
+proyectobancoplus\dtos\NuevoCuentaDTO.class
+proyectobancoplus\Negocio\ICuentasBO.class
+proyectobancoplus\Presentacion\MenuForm$1.class
 proyectobancoplus\Persistencia\CuentaDAO.class
 proyectobancoplus\Entidades\RetiroSinCuenta$EstadoOperacion.class
 proyectobancoplus\Presentacion\MenuForm$2.class
+
+proyectobancoplus\dtos\NuevoTransferenciaDTO.class
 proyectobancoplus\Negocio\TransferenciaBO.class

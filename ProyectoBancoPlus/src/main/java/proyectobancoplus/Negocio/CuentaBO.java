@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectobancoplus.Negocio;
 
 import proyectobancoplus.Entidades.Cuenta;
@@ -13,9 +10,13 @@ import proyectobancoplus.dtos.NuevoCuentaDTO;
  *
  * @author Cesar Luna
  */
+<<<<<<< HEAD
 
 //clase cerebro
 public class CuentaBO {
+=======
+public class CuentaBO implements ICuentaDAO {
+>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
     private ICuentaDAO cuentaDAO;
 
     
@@ -46,7 +47,18 @@ public class CuentaBO {
         } catch (PersistenciaException e) {
             throw new NegocioException("Error no se pudo conectar", null);
         }
+
+
+        public List<Cuenta> obtenerCuentasActivas() throws NegocioException {
+        
+        CuentaDAO cuentaDAO = new CuentaDAO();
+        try {
+            return cuentaDAO.obtenerCuentasActivas();
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al obtener cuentas", ex);
+        }                
     }
+}
              
              
              

@@ -1,15 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
-package proyectobancoplus.Persistencia;
-
-import proyectobancoplus.Entidades.Cuenta;
-
-/**
- *
- * @author Cesar Luna
- */
 
 // contratos de activar cuenta y cancelar cuenta
 public interface ICuentaDAO {
@@ -19,4 +7,6 @@ public interface ICuentaDAO {
   
     //lo mismo pero de baja
     void cancelarCuenta(Integer idCuenta) throws PersistenciaException;
+
+    public List<Cuenta> obtenerCuentasActivas() throws PersistenciaException;
 }

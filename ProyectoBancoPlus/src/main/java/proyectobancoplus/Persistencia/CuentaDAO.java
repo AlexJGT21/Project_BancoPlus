@@ -1,19 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package proyectobancoplus.Persistencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Persistencia.ConexionBD;
+import proyectobancoplus.Persistencia.PersistenciaException;
 
-/**
- *
- * @author Cesar Luna
- */
+
 public class CuentaDAO implements ICuentaDAO {
+
+    private List<Cuenta> cuentasActivas;
+
     @Override
     public Cuenta agregarCuenta(Cuenta nuevaCuenta) throws PersistenciaException {
         
@@ -52,10 +53,36 @@ public class CuentaDAO implements ICuentaDAO {
             throw new PersistenciaException("Error al cancelar la cuenta del cliente en sql", null);
         }
     }
-    
-    
-    
-    
-    
-    
+
+        public List<Cuenta> obtenerCuentasActivas() throws PersistenciaException {
+        cuentasActivas = new ArrayList<>();
+        
+        try {
+            Connection connection = ConexionBD.crearConexion();
+            
+            String selectSQL = """
+                               SELECT idCuenta, numCuenta, saldoMXN
+                               FROM cuentas
+                               WHERE estado = 'activa';
+                               """;
+            
+            Statement querySQL = connection.createStatement();
+            ResultSet result = querySQL.executeQuery(selectSQL);
+            
+            while (result.next()) {
+                int idCuenta = result.getInt(1);
+                int numCuenta = result.getInt(2);
+                float saldoMXN = result.getFloat(3);
+                cuentasActivas.add(new Cuenta(idCuenta, numCuenta, saldoMXN, null, null, null, null));                
+            }
+            return cuentasActivas;
+        } catch (SQLException e) {
+            LOGGER.severe(e.getMessage());
+            throw new PersistenciaException("No se pudo consultar cuentas", e);
+        }
+    }
 }
+
+
+
+
