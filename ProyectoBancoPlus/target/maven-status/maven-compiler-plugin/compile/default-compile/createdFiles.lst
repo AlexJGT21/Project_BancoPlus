@@ -1,11 +1,14 @@
 proyectobancoplus\dtos\NuevoRetiroSinCuentaDTO.class
 proyectobancoplus\Presentacion\MenuForm$4.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$4.class
+proyectobancoplus\Presentacion\BajaCuentaForm.class
 proyectobancoplus\Presentacion\TransferenciaForm$2.class
 proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
 proyectobancoplus\Entidades\Cuenta.class
 proyectobancoplus\Entidades\Cliente.class
 proyectobancoplus\Persistencia\IRetiroSinCuentaDAO.class
+proyectobancoplus\Presentacion\AltaCuentaForm$1.class
+proyectobancoplus\Negocio\CuentaBO.class
 proyectobancoplus\Presentacion\TransferenciaForm.class
 proyectobancoplus\Presentacion\InicioSesionFORM$4.class
 proyectobancoplus\Presentacion\informacionTransferencia$1.class
@@ -19,6 +22,7 @@ proyectobancoplus\Presentacion\informacionTransferencia.class
 proyectobancoplus\Presentacion\MenuForm$1.class
 proyectobancoplus\Presentacion\TransferenciaForm$1.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$1.class
+proyectobancoplus\Presentacion\AltaCuentaForm$2.class
 proyectobancoplus\ProyectoBancoPlus.class
 proyectobancoplus\dtos\NuevoCuentaDTO.class
 proyectobancoplus\dtos\NuevoTransferenciaDTO.class
@@ -29,13 +33,16 @@ proyectobancoplus\Presentacion\InicioSesionFORM$3.class
 proyectobancoplus\Negocio\NegocioException.class
 proyectobancoplus\Persistencia\ConexionBD.class
 proyectobancoplus\Persistencia\RetiroSinCuentaDAO.class
+proyectobancoplus\Presentacion\AltaCuentaForm.class
 proyectobancoplus\Entidades\RetiroSinCuenta.class
 proyectobancoplus\Presentacion\InicioSesionFORM.class
 proyectobancoplus\dtos\NuevoCuentaDTO$EstadoCuenta.class
 proyectobancoplus\Negocio\ITransferencias.class
+proyectobancoplus\Persistencia\ICuentaDAO.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$2.class
 proyectobancoplus\Persistencia\ITransferenciaDAO.class
 proyectobancoplus\Presentacion\MenuForm$3.class
+proyectobancoplus\Presentacion\AltaCuentaForm$3.class
 proyectobancoplus\Negocio\IRetiroSinCuenta.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM$3.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM.class
@@ -44,6 +51,7 @@ proyectobancoplus\Presentacion\TransferenciaForm$3.class
 proyectobancoplus\Presentacion\TransferenciaForm$5.class
 proyectobancoplus\Presentacion\InicioSesionFORM$2.class
 proyectobancoplus\Presentacion\MenuForm.class
+proyectobancoplus\Persistencia\CuentaDAO.class
 proyectobancoplus\Entidades\RetiroSinCuenta$EstadoOperacion.class
 proyectobancoplus\Presentacion\MenuForm$2.class
 proyectobancoplus\Negocio\TransferenciaBO.class

@@ -4,6 +4,19 @@
  */
 package proyectobancoplus.Presentacion;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import proyectobancoplus.Entidades.Cuenta;
+
+import proyectobancoplus.Negocio.CuentaBO;
+import proyectobancoplus.Persistencia.ConexionBD;
+import proyectobancoplus.Persistencia.CuentaDAO;
+import proyectobancoplus.Persistencia.ICuentaDAO;
+import proyectobancoplus.Persistencia.PersistenciaException;
+import proyectobancoplus.dtos.NuevoCuentaDTO;
+
 /**
  *
  * @author Cesar Luna
@@ -15,6 +28,9 @@ public class AltaCuentaForm extends javax.swing.JFrame {
      */
     public AltaCuentaForm() {
         initComponents();
+        int numAleatorio = (int) (Math.random() * 90000000) + 10000000;
+        txtNumeroCuenta.setText(numAleatorio + "");
+        
     }
 
     /**
@@ -26,27 +42,45 @@ public class AltaCuentaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        SaldoInicial = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCrearCuenta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Nuevo numero de cuenta");
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtNumeroCuenta = new javax.swing.JTextArea();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Nuevo numero de cuenta");
+
+        SaldoInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaldoInicialActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Saldo inicial:");
 
-        jButton1.setText("Crear cuenta nueva");
+        btnCrearCuenta.setText("Crear cuenta nueva");
+        btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCuentaActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
+
+        txtNumeroCuenta.setEditable(false);
+        txtNumeroCuenta.setColumns(20);
+        txtNumeroCuenta.setRows(5);
+        jScrollPane2.setViewportView(txtNumeroCuenta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,22 +89,22 @@ public class AltaCuentaForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnCrearCuenta)
                                 .addGap(48, 48, 48)
                                 .addComponent(jButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(SaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,21 +112,68 @@ public class AltaCuentaForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnCrearCuenta)
                     .addComponent(jButton2))
                 .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
+try {
+        String textoSaldo = SaldoInicial.getText(); 
+        if (textoSaldo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Entrada de datos invalida\nIngrese numeros para indicar saldo");
+            return;
+        }
+
+        Float saldoIngresado = Float.parseFloat(textoSaldo);
+
+
+
+            proyectobancoplus.Entidades.Cliente clienteMientras = new proyectobancoplus.Entidades.Cliente();
+            clienteMientras.setIdCliente(1);
+            Integer numeroDePantalla = Integer.parseInt(txtNumeroCuenta.getText());
+            proyectobancoplus.dtos.NuevoCuentaDTO dto = new proyectobancoplus.dtos.NuevoCuentaDTO(numeroDePantalla, saldoIngresado, null, clienteMientras);
+
+        proyectobancoplus.Persistencia.ICuentaDAO dao = new proyectobancoplus.Persistencia.CuentaDAO();
+        proyectobancoplus.Negocio.CuentaBO bo = new proyectobancoplus.Negocio.CuentaBO(dao);
+
+        proyectobancoplus.Entidades.Cuenta nuevaCuenta = bo.crearCuenta(dto);
+        
+  //conexion con el boton
+        txtNumeroCuenta.setText(String.valueOf(nuevaCuenta.getNumCuenta()));
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Cuenta creada exitosamente!\nTu número es: " + nuevaCuenta.getNumCuenta());
+        this.dispose(); 
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Entrada de datos invalida\nIngrese numeros para indicar saldo");
+    } catch (proyectobancoplus.Negocio.NegocioException e) {
+        
+
+        javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
+    } catch (proyectobancoplus.Persistencia.PersistenciaException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error en la base de datos: " + e.getMessage());
+    }
+
+
+
+    }//GEN-LAST:event_btnCrearCuentaActionPerformed
+
+    private void SaldoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaldoInicialActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_SaldoInicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,12 +211,14 @@ public class AltaCuentaForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField SaldoInicial;
+    private javax.swing.JButton btnCrearCuenta;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea txtNumeroCuenta;
     // End of variables declaration//GEN-END:variables
 }

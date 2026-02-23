@@ -16,21 +16,18 @@ import proyectobancoplus.Entidades.Cuenta;
 public class CuentaDAO implements ICuentaDAO {
     @Override
     public Cuenta agregarCuenta(Cuenta nuevaCuenta) throws PersistenciaException {
-        //aqui se genera el codigo random de 8 digitos
-        int numeroCuentaGenerado = (int) (Math.random() * 90000000) + 10000000;
         
         String sql = "INSERT INTO cuentas (idCuenta, saldoMXN, estado, idCliente) VALUES (?, ?, 'ACTIVA', ?)";
         
         try (Connection conn = ConexionBD.crearConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
-            ps.setInt(1, numeroCuentaGenerado);
+            ps.setInt(1, nuevaCuenta.getNumCuenta());            
             ps.setFloat(2, nuevaCuenta.getSaldoMXN());
             ps.setInt(3, nuevaCuenta.getIdCliente().getIdCliente());
             
             ps.executeUpdate();
             
-            nuevaCuenta.setIdCuenta(numeroCuentaGenerado);
             return nuevaCuenta;
             
         } catch (SQLException e) {

@@ -13,6 +13,8 @@ import proyectobancoplus.dtos.NuevoCuentaDTO;
  *
  * @author Cesar Luna
  */
+
+//clase cerebro
 public class CuentaBO {
     private ICuentaDAO cuentaDAO;
 
