@@ -6,7 +6,6 @@ import proyectobancoplus.Negocio.ICuentasBO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.CuentasDAO;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
-import proyectobancoplus.Presentacion.MenuForm;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 import proyectobancoplus.Presentacion.informacionTransferencia;
@@ -43,9 +42,9 @@ public static void mostrarMenu(){
 /**
  * Este metodo mostrara el menu de la banca
  */
-    MenuForm menu = new MenuForm();
-    menu.setVisible(true);
-    
+//    MenuForm menu = new MenuForm();
+//    menu.setVisible(true);
+//    
 }
 
 public static void mostrarTransferencia(){

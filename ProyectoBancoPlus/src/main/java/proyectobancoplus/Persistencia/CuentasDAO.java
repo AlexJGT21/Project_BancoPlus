@@ -23,10 +23,12 @@ public class CuentasDAO implements ICuentaDAO {
     @Override
     public Cuenta agregarCuenta(Cuenta nuevaCuenta) throws PersistenciaException {
         
-        String sql = "INSERT INTO cuentas (idCuenta, saldoMXN, estado, idCliente) VALUES (?, ?, 'ACTIVA', ?)";
         
-        try (Connection conn = ConexionBD.crearConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try {
+            Connection conexion = ConexionBD.crearConexion();
+                String sql = "INSERT INTO cuentas (idCuenta, saldoMXN, estado, idCliente) VALUES (?, ?, 'ACTIVA', ?)";
+                PreparedStatement ps = conexion.prepareStatement(sql);
+
             
             ps.setInt(1, nuevaCuenta.getNumCuenta());            
             ps.setFloat(2, nuevaCuenta.getSaldoMXN());
@@ -35,12 +37,11 @@ public class CuentasDAO implements ICuentaDAO {
             ps.executeUpdate();
             
             return nuevaCuenta;
-            
-        } catch (SQLException e) {
+        
+    }catch (SQLException e) {
             throw new PersistenciaException("Error al registrar al cliente en sql", null);
         }
     }
-    
     @Override
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
         //logica del dar de bajar cuenta

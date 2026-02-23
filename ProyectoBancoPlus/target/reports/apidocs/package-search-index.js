@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"proyectobancoplus"},{"l":"proyectobancoplus.dtos"},{"l":"proyectobancoplus.Entidades"},{"l":"proyectobancoplus.Negocio"},{"l":"proyectobancoplus.Persistencia"},{"l":"proyectobancoplus.Presentacion"},{"l":"Validadores"}];updateSearchResults();
