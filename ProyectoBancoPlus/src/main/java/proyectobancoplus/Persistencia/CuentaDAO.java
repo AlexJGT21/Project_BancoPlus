@@ -1,4 +1,16 @@
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Persistencia.ConexionBD;
+import proyectobancoplus.Persistencia.PersistenciaException;
+
+
 public class CuentaDAO implements ICuentaDAO {
 
     private List<Cuenta> cuentasActivas;
