@@ -17,9 +17,9 @@ public class MenuForm extends javax.swing.JFrame {
     /**
      * Creates new form MenuForm
      */
-    public MenuForm(Cliente cliente, ITransferencias trBO) {
-        this.clienteA = cliente;
-        this.transferenciaBO = trBO;
+    public MenuForm() {
+//        this.clienteA = cliente;
+//        this.transferenciaBO = trBO;
         initComponents();
         setTitle("Menu Principal----BancoPlus");
     }
@@ -80,23 +80,20 @@ public class MenuForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnCrearMasCuentas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
-                .addGap(68, 68, 68))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
+                        .addGap(22, 22, 22)
+                        .addComponent(btnCrearMasCuentas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addComponent(btnCerrarSesion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnMisCuentas)
-                            .addComponent(btnTrasferencias)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(btnRetiroSinCuenta)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnTrasferencias)
+                            .addComponent(btnRetiroSinCuenta)
+                            .addComponent(btnMisCuentas))))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,13 +102,13 @@ public class MenuForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearMasCuentas)
                     .addComponent(btnCerrarSesion))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnMisCuentas)
                 .addGap(18, 18, 18)
                 .addComponent(btnTrasferencias)
                 .addGap(18, 18, 18)
                 .addComponent(btnRetiroSinCuenta)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,17 +134,14 @@ public class MenuForm extends javax.swing.JFrame {
 
     private void btnTrasferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasferenciasActionPerformed
         // TODO add your handling code here:;
-//        TransferenciaForm pantallaTransferencias = new TransferenciaForm(transferenciaBO,clienteA);
-        //mostramos la pantalla con cliente logeado
-//        pantallaTransferencias.setVisible(true);
+        proyectobancoplus.ProyectoBancoPlus.mostrarTransferencia();
 
     }//GEN-LAST:event_btnTrasferenciasActionPerformed
 
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
     
-        RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM();
-        rsc.setVisible(true);
-        this.dispose();
+       proyectobancoplus.ProyectoBancoPlus.mostrarRetiroSinCuenta();
+       
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

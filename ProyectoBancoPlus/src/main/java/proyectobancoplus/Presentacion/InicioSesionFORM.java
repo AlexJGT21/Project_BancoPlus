@@ -133,18 +133,17 @@ public class InicioSesionFORM extends javax.swing.JFrame {
         String us = txtUsuario.getText();
         String contra = txtContraseñaIngresada.getText();
 //        IOperaciones op;
-        //ahora validaremos campos solamente
+       
+    proyectobancoplus.ProyectoBancoPlus.mostrarMenu();
+//ahora validaremos campos solamente
         if (us.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un usuario y contraseña ");
             return;
         }
         try {
 
-            //   ahorita checo poq da error
-//           ITransferenciaDAO transferenciaDAO = new NuevaTransferenciaDTO();
             ITransferenciaDAO tranferenciaDAO = new TransferenciaDAO();
 
-//       no se puede convertir     IOperaciones trBO = new NuevaTransferencia();
 
             //aqui va la simulacion del login
             Cliente clienteLog = new Cliente();
@@ -154,10 +153,7 @@ public class InicioSesionFORM extends javax.swing.JFrame {
             clienteLog.setApellidoPaterno(" de prueba");
             //luego se agregan mas datos perate
 
-            //se pasan los datos
-//            MenuForm pantalla2 = new MenuForm(clienteLog,op );
-//            pantalla2.setVisible(true);
-
+            
             // y cerramos el login
             this.dispose();
         } catch (Exception e) {
@@ -170,7 +166,12 @@ public class InicioSesionFORM extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+   int confirm = JOptionPane.showConfirmDialog(this,"Desea salir de la app?",
+           "Confirmar",JOptionPane.YES_NO_OPTION);
+        if (confirm==JOptionPane.YES_OPTION) {
         System.exit(0);
+            
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
