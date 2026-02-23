@@ -16,11 +16,10 @@ public class ConexionBD {
     private static final String CONTRASENIA = "SQLLUCI"; //CONTRAÑA PERSONAL BD
     //NOTA DE AUTOR: NO DIFUNDIR
     //private static final String CONTRASENIA = "ITSON"; 
-<<<<<<< HEAD
-    private static final String CONTRASENIA = ""; 
-=======
+//    private static final String CONTRASENIA = ""; 
+
     //private static final String CONTRASENIA = "004006Minion"; 
->>>>>>> 2afb7461fa608908244a88e836c01186d384245f
+//>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
     
  
     

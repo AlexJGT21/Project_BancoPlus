@@ -1,4 +1,6 @@
 
+package proyectobancoplus.Persistencia;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,13 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import proyectobancoplus.Entidades.Cuenta;
-import proyectobancoplus.Persistencia.ConexionBD;
-import proyectobancoplus.Persistencia.PersistenciaException;
 
+/**
+ *
+ * @author Alex García Trejo
+ */
+public class CuentasDAO implements ICuentaDAO {
 
-public class CuentaDAO implements ICuentaDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(CuentasDAO.class.getName());
     private List<Cuenta> cuentasActivas;
 
     @Override
@@ -38,8 +43,7 @@ public class CuentaDAO implements ICuentaDAO {
     
     @Override
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
-
-//logica del dar de bajar cuenta
+        //logica del dar de bajar cuenta
         //codigo pa sql
         String sql = "UPDATE cuentas SET estado = 'CANCELADA' WHERE idCuenta = ?";
         
@@ -54,7 +58,8 @@ public class CuentaDAO implements ICuentaDAO {
         }
     }
 
-        public List<Cuenta> obtenerCuentasActivas() throws PersistenciaException {
+    @Override
+    public List<Cuenta> obtenerCuentasActivas() throws PersistenciaException {
         cuentasActivas = new ArrayList<>();
         
         try {
@@ -81,8 +86,5 @@ public class CuentaDAO implements ICuentaDAO {
             throw new PersistenciaException("No se pudo consultar cuentas", e);
         }
     }
+    
 }
-
-
-
-

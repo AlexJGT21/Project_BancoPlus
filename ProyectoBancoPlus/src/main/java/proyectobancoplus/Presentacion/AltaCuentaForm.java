@@ -12,7 +12,7 @@ import proyectobancoplus.Entidades.Cuenta;
 
 import proyectobancoplus.Negocio.CuentaBO;
 import proyectobancoplus.Persistencia.ConexionBD;
-import proyectobancoplus.Persistencia.CuentaDAO;
+import proyectobancoplus.Persistencia.CuentasDAO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.PersistenciaException;
 import proyectobancoplus.dtos.NuevoCuentaDTO;
@@ -145,7 +145,7 @@ try {
             Integer numeroDePantalla = Integer.parseInt(txtNumeroCuenta.getText());
             proyectobancoplus.dtos.NuevoCuentaDTO dto = new proyectobancoplus.dtos.NuevoCuentaDTO(numeroDePantalla, saldoIngresado, null, clienteMientras);
 
-        proyectobancoplus.Persistencia.ICuentaDAO dao = new proyectobancoplus.Persistencia.CuentaDAO();
+        proyectobancoplus.Persistencia.ICuentaDAO dao = new proyectobancoplus.Persistencia.CuentasDAO();
         proyectobancoplus.Negocio.CuentaBO bo = new proyectobancoplus.Negocio.CuentaBO(dao);
 
         proyectobancoplus.Entidades.Cuenta nuevaCuenta = bo.crearCuenta(dto);
