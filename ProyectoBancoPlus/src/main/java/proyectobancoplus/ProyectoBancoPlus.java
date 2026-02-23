@@ -1,7 +1,10 @@
 
 package proyectobancoplus;
 
-import proyectobancoplus.Entidades.Cliente;
+import proyectobancoplus.Negocio.CuentaBO;
+import proyectobancoplus.Negocio.ICuentasBO;
+import proyectobancoplus.Persistencia.ICuentaDAO;
+import proyectobancoplus.Persistencia.CuentasDAO;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
 import proyectobancoplus.Presentacion.MenuForm;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
@@ -57,8 +60,10 @@ public static void mostrarRetiroSinCuenta(){
 /**
  * Este metodo mostrara el form de retiro sin cuenta
  */
- RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM();
-        rsc.setVisible(true);
+ICuentaDAO cuentaDAO = new CuentasDAO();
+ICuentasBO cuentasBO = new CuentaBO(cuentaDAO);
+RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO);
+rsc.setVisible(true);
 }
 
 public static void mostrarInformacionTransferencia(){

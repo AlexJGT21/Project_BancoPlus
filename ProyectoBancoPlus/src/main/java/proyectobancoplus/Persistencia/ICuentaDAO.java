@@ -1,5 +1,13 @@
 
-// contratos de activar cuenta y cancelar cuenta
+package proyectobancoplus.Persistencia;
+
+import java.util.List;
+import proyectobancoplus.Entidades.Cuenta;
+
+/**
+ *
+ * @author Alex García Trejo
+ */
 public interface ICuentaDAO {
     
     //promesa de dar de alta la cuenta
