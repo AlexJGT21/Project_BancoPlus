@@ -3,7 +3,6 @@ package proyectobancoplus.dtos;
 
 import java.util.GregorianCalendar;
 import proyectobancoplus.Entidades.Cuenta;
-import proyectobancoplus.Entidades.RetiroSinCuenta;
 
 /**
  *
