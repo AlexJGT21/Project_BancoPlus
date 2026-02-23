@@ -6,6 +6,7 @@ proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
 proyectobancoplus\Entidades\Cuenta.class
 proyectobancoplus\Persistencia\CuentasDAO.class
 proyectobancoplus\Entidades\Cliente.class
+proyectobancoplus\Negocio\RetiroSinCuentaBO.class
 proyectobancoplus\Persistencia\IRetiroSinCuentaDAO.class
 proyectobancoplus\Presentacion\AltaCuentaForm$1.class
 proyectobancoplus\Negocio\CuentaBO.class
@@ -20,6 +21,7 @@ proyectobancoplus\Presentacion\InicioSesionFORM$1.class
 proyectobancoplus\Presentacion\informacionTransferencia.class
 proyectobancoplus\Presentacion\MenuForm$1.class
 proyectobancoplus\Presentacion\TransferenciaForm$1.class
+proyectobancoplus\Presentacion\AltaCuentaForm$2.class
 proyectobancoplus\ProyectoBancoPlus.class
 proyectobancoplus\dtos\NuevoCuentaDTO.class
 proyectobancoplus\dtos\NuevoTransferenciaDTO.class

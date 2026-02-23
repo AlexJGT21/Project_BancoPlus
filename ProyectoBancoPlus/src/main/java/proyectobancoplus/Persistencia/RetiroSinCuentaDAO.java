@@ -31,7 +31,7 @@ public class RetiroSinCuentaDAO implements IRetiroSinCuentaDAO {
             
             PreparedStatement statement = connection.prepareStatement(insertSQL);
             SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String vencimientoDate = newFormat.format(retiroSinCuenta.getFechaHoraVencimiento().getTimeZone());
+            String vencimientoDate = newFormat.format(retiroSinCuenta.getFechaHoraVencimiento().getTime());
             
             statement.setInt(1, retiroSinCuenta.getFolio());
             statement.setString(2, retiroSinCuenta.getPassword());
