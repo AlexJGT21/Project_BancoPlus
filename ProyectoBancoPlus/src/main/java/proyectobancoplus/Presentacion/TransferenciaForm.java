@@ -7,7 +7,6 @@ package proyectobancoplus.Presentacion;
 import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cliente;//log
 import proyectobancoplus.Entidades.Cuenta;
-import proyectobancoplus.Negocio.TransferenciaBO;
 import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 
 /**
@@ -17,40 +16,13 @@ import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 public class TransferenciaForm extends javax.swing.JFrame {
 //    private IOperaciones transferenciaBO;
     private Cliente cleinteLog;//cliente de log
-    
-    
-    public TransferenciaForm() {
-        initComponents();
-        cargarCuentas();
-    }
-     
-private void cargarCuentas() {
-        try {
-            proyectobancoplus.Persistencia.ICuentaDAO dao = new proyectobancoplus.Persistencia.CuentasDAO();
-            proyectobancoplus.Negocio.CuentaBO bo = new proyectobancoplus.Negocio.CuentaBO(dao);
-            java.util.List<Cuenta> listaCuentas = bo.obtenerCuentasActivas();
-            
-            javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
-            
-            for (Cuenta cuenta : listaCuentas) {
-                modelo.addElement(cuenta);
-            }
-            
-            jComboBox1.setModel(modelo);
-            
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
-        }
-    }
-    
     /**
      * Creates new form TransferenciaForm
      */
-//    public TransferenciaForm(IOperaciones transferenciaBO,Cliente cliente) {
-//        this.transferenciaBO=transferenciaBO;
-//        this.cleinteLog=cliente;
-//        initComponents();
-//    }
+    public TransferenciaForm() {     
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,16 +33,19 @@ private void cargarCuentas() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         lblDestinatario = new javax.swing.JLabel();
-        lblCantidad = new javax.swing.JLabel();
         txtCuentaDestino = new javax.swing.JTextField();
+        lblCantidad = new javax.swing.JLabel();
         txtCantidadTransferencia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transferencia");
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Cuenta", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,15 +54,17 @@ private void cargarCuentas() {
             }
         });
 
+        lblDestinatario.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lblDestinatario.setText("Destinatario");
-
-        lblCantidad.setText("Cantidad");
 
         txtCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCuentaDestinoActionPerformed(evt);
             }
         });
+
+        lblCantidad.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lblCantidad.setText("Cantidad");
 
         txtCantidadTransferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,57 +86,67 @@ private void cargarCuentas() {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 98, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnConfirmar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCantidadTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(105, 105, 105))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCantidad)
+                    .addComponent(txtCantidadTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnCancelar))
+                .addGap(50, 50, 50))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btnConfirmar)
-                        .addGap(48, 48, 48)
-                        .addComponent(btnCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidadTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCantidad)
-                    .addComponent(txtCantidadTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnConfirmar))
-                .addContainerGap(63, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
         this.dispose();
-
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -172,25 +159,15 @@ private void cargarCuentas() {
             }
             
             //para vcapturar los datos de la interfaz
+            float monto= Float.parseFloat(txtCantidadTransferencia.getText());
+            int idCuentaDestino=Integer.parseInt(txtCuentaDestino.getText());
             
-        float monto = Float.parseFloat(txtCantidadTransferencia.getText());
-        int idCuentaDestinatario = Integer.parseInt(txtCuentaDestino.getText());
             
-            
-            Cuenta cuentaOrigen = (Cuenta)jComboBox1.getSelectedItem();
+            Cuenta cuentaOrigen=(Cuenta)jComboBox1.getSelectedItem();
             //se crea la cuenat destino con el id para la dto
             Cuenta cuentaDestino = new Cuenta();
-            cuentaDestino.setIdCuenta(1);
-            cuentaDestino.setNumCuenta(idCuentaDestinatario);
-            //
-            NuevoTransferenciaDTO dt= new NuevoTransferenciaDTO(monto, null, cuentaOrigen, cuentaDestino);
-            
-            proyectobancoplus.Persistencia.ITransferenciaDAO dao = new proyectobancoplus.Persistencia.TransferenciaDAO();            
-            proyectobancoplus.Negocio.TransferenciaBO bo = new proyectobancoplus.Negocio.TransferenciaBO(dao);
-            bo.realizarTransferencia(dt);
-            
-            
-            
+            cuentaDestino.setIdCuenta(idCuentaDestino);
+
             
             JOptionPane.showMessageDialog(this, "transaccion exitosa!!");
             this.dispose();
@@ -200,6 +177,8 @@ private void cargarCuentas() {
         } catch (Exception e) {
         JOptionPane.showMessageDialog(this,e.getMessage());
         }
+        
+        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtCantidadTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadTransferenciaActionPerformed
@@ -217,42 +196,43 @@ private void cargarCuentas() {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TransferenciaForm().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new TransferenciaForm().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblDestinatario;
     private javax.swing.JTextField txtCantidadTransferencia;
