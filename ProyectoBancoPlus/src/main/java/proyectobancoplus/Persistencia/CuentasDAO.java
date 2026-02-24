@@ -13,7 +13,7 @@ import proyectobancoplus.Entidades.Cuenta;
 
 /**
  *
- * @author Alex García Trejo
+ * @author Alex GarcÃ­a Trejo
  */
 public class CuentasDAO implements ICuentaDAO {
 
@@ -42,7 +42,6 @@ public class CuentasDAO implements ICuentaDAO {
             throw new PersistenciaException("Error al registrar al cliente en sql", null);
         }
     }
-    
     @Override
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
         //logica del dar de bajar cuenta

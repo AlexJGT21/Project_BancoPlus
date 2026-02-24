@@ -1,6 +1,7 @@
 
 package proyectobancoplus.Negocio;
 
+import java.util.GregorianCalendar;
 import java.util.Random;
 import proyectobancoplus.Entidades.RetiroSinCuenta;
 import proyectobancoplus.Persistencia.IRetiroSinCuentaDAO;
@@ -35,6 +36,14 @@ public class RetiroSinCuentaBO implements IRetiroSinCuentaBO {
         
         retiroSinCuentaDTO.setFolio(folio);
         retiroSinCuentaDTO.setPassword(password);
+        
+        GregorianCalendar ahora = new GregorianCalendar();
+        GregorianCalendar vencimiento = new GregorianCalendar();
+        vencimiento.add(GregorianCalendar.MINUTE, 10);
+        
+        retiroSinCuentaDTO.setFechaHoraRegistro(ahora);
+        retiroSinCuentaDTO.setFechaHoraVencimiento(vencimiento);
+        retiroSinCuentaDTO.setEstado(RetiroSinCuenta.EstadoOperacion.PENDIENTE);
         
         try {
             RetiroSinCuenta retiroSinCuenta = retiroSinCuentaDAO.retiroSinCuenta(retiroSinCuentaDTO);

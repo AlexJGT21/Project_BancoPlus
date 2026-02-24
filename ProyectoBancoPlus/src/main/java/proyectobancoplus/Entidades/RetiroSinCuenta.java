@@ -10,8 +10,8 @@ import java.util.GregorianCalendar;
 public class RetiroSinCuenta {
     
     //Uso del ENUM public para poder acceder a los valores
-    public enum EstadoOperacion {
-        COBRADO, NO_COBRADO;
+    public static enum EstadoOperacion {
+        PENDIENTE, COBRADO, NO_COBRADO;
     }
     
     private Integer idRetiroSC;
