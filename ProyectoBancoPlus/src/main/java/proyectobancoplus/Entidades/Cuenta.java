@@ -97,6 +97,7 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        return "Número de Cuenta: " + numCuenta;
+        return "Cuenta: " + this.numCuenta + "      Saldo: $" + this.saldoMXN;
+
     }
 }

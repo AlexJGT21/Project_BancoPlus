@@ -7,6 +7,7 @@ package proyectobancoplus.Presentacion;
 import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cliente;//log
 import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Negocio.TransferenciaBO;
 import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 
 /**
@@ -16,6 +17,32 @@ import proyectobancoplus.dtos.NuevoTransferenciaDTO;
 public class TransferenciaForm extends javax.swing.JFrame {
 //    private IOperaciones transferenciaBO;
     private Cliente cleinteLog;//cliente de log
+    
+    
+    public TransferenciaForm() {
+        initComponents();
+        cargarCuentas();
+    }
+     
+private void cargarCuentas() {
+        try {
+            proyectobancoplus.Persistencia.ICuentaDAO dao = new proyectobancoplus.Persistencia.CuentasDAO();
+            proyectobancoplus.Negocio.CuentaBO bo = new proyectobancoplus.Negocio.CuentaBO(dao);
+            java.util.List<Cuenta> listaCuentas = bo.obtenerCuentasActivas();
+            
+            javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+            
+            for (Cuenta cuenta : listaCuentas) {
+                modelo.addElement(cuenta);
+            }
+            
+            jComboBox1.setModel(modelo);
+            
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
+        }
+    }
+    
     /**
      * Creates new form TransferenciaForm
      */
@@ -146,7 +173,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -160,18 +188,25 @@ public class TransferenciaForm extends javax.swing.JFrame {
             
             //para vcapturar los datos de la interfaz
             
-            float monto= Float.parseFloat(txtCantidadTransferencia.getText());
-            int idCuentaDestino=Integer.parseInt(txtCuentaDestino.getText());
+        float monto = Float.parseFloat(txtCantidadTransferencia.getText());
+        int idCuentaDestinatario = Integer.parseInt(txtCuentaDestino.getText());
             
             
-            Cuenta cuentaOrigen=(Cuenta)jComboBox1.getSelectedItem();
+            Cuenta cuentaOrigen = (Cuenta)jComboBox1.getSelectedItem();
             //se crea la cuenat destino con el id para la dto
             Cuenta cuentaDestino = new Cuenta();
-            cuentaDestino.setIdCuenta(idCuentaDestino);
+            cuentaDestino.setIdCuenta(1);
+            cuentaDestino.setNumCuenta(idCuentaDestinatario);
             //
             NuevoTransferenciaDTO dt= new NuevoTransferenciaDTO(monto, null, cuentaOrigen, cuentaDestino);
-            //para  ejecutra ahora si en la bo
-//            transferenciaBO.realizarTransferencia(dt);
+            
+            proyectobancoplus.Persistencia.ITransferenciaDAO dao = new proyectobancoplus.Persistencia.TransferenciaDAO();            
+            proyectobancoplus.Negocio.TransferenciaBO bo = new proyectobancoplus.Negocio.TransferenciaBO(dao);
+            bo.realizarTransferencia(dt);
+            
+            
+            
+            
             JOptionPane.showMessageDialog(this, "transaccion exitosa!!");
             this.dispose();
             
@@ -197,37 +232,37 @@ public class TransferenciaForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new TransferenciaForm().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TransferenciaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TransferenciaForm().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

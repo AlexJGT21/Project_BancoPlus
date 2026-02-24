@@ -24,8 +24,8 @@ public class TransferenciaBO implements ITransferencias {
         if (dto.getMonto() <= 0) {
             throw new NegocioException("Error: el monto debe ser mayor a 0$", null);
         }
-        if (dto.getIdCuentaRemitente().getIdCliente().equals(dto.getIdCuentaDestinatario().getIdCliente())) {
-            throw new NegocioException("Error: no puedes transferir a la misma cuenta", null);
+        if (dto.getIdCuentaRemitente().getNumCuenta().equals(dto.getIdCuentaDestinatario().getNumCuenta())) {
+            throw new NegocioException("Error: No puedes transferir dinero a la misma cuenta origen.", null);
         }
         
         if (dto.getIdCuentaDestinatario() == null) {
@@ -41,7 +41,7 @@ public class TransferenciaBO implements ITransferencias {
        
         
        //saco el numero de la cuenta, el id de la cuenta destino
-       String numCuentaDestino = String.valueOf(dto.getIdCuentaDestinatario(). getIdCuenta());
+       String numCuentaDestino = String.valueOf(dto.getIdCuentaDestinatario(). getNumCuenta());
        
         
         if (!numCuentaDestino.matches("\\d+")) {

@@ -18,46 +18,57 @@ public class TransferenciaDAO implements ITransferenciaDAO {
 
     private static final Logger LOGGER = Logger.getLogger(TransferenciaDAO.class.getName());    
     
-    @Override
+@Override
     public Transferencia realizarTransferencia(NuevoTransferenciaDTO nuevaTransferencia) throws PersistenciaException {
-        
+        Connection conn = null;
         try {
+            conn = ConexionBD.crearConexion();
+            conn.setAutoCommit(false); 
+
+            String sqlRestar = "UPDATE cuentas SET saldoMXN = saldoMXN - ? WHERE numCuenta = ?";
+            try (PreparedStatement psRestar = conn.prepareStatement(sqlRestar)) {
+                psRestar.setFloat(1, nuevaTransferencia.getMonto());
+                psRestar.setInt(2, nuevaTransferencia.getIdCuentaRemitente().getNumCuenta()); 
+                int filasRestadas = psRestar.executeUpdate();
+                if (filasRestadas == 0) {
+                    throw new SQLException("La cuenta origen no existe");
+                }
+            }
+
+            String sqlSumar = "UPDATE cuentas SET saldoMXN = saldoMXN + ? WHERE numCuenta = ?";
+            try (PreparedStatement psSumar = conn.prepareStatement(sqlSumar)) {
+                psSumar.setFloat(1, nuevaTransferencia.getMonto());
+                psSumar.setInt(2, nuevaTransferencia.getIdCuentaDestinatario().getNumCuenta()); 
+                int filasSumadas = psSumar.executeUpdate();
+                if (filasSumadas == 0) {
+                    throw new SQLException("La cuenta destino no existe");
+                }
+            }
+
+            String sqlInsert = "INSERT INTO transferencias(monto, fechaHora, idCuentaRemitente, idCuentaDestinatario) VALUES (?, NOW(), ?, ?)";
+            try (PreparedStatement psInsert = conn.prepareStatement(sqlInsert)) {
+                psInsert.setFloat(1, nuevaTransferencia.getMonto());
+                psInsert.setInt(2, nuevaTransferencia.getIdCuentaRemitente().getIdCuenta());
+                psInsert.setInt(3, nuevaTransferencia.getIdCuentaDestinatario().getIdCuenta());
+                psInsert.executeUpdate();
+            }
+            conn.commit(); 
             
-            //1.Primero conectarnos a la BD
-            Connection connectionBD = ConexionBD.crearConexion();
-            
-            //2. Preparar la consulta para la BD
-            String insertSQL = """
-                               INSERT INTO transferencias(monto, fechaHora, idCuentaRemitente, idCuentaDestinatario)
-                               VALUES (?, ?, ?, ?);
-                               """;
-            
-            //3. Preparamos el statement
-            PreparedStatement statement = connectionBD.prepareStatement(insertSQL);
-            
-            SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateTime = newFormat.format(nuevaTransferencia.getFechaHora());
-            //4.Reemplazo de parametros SQL por valores reales
-            statement.setFloat(1, nuevaTransferencia.getMonto());
-            statement.setString(2, dateTime);
-            statement.setInt(3, nuevaTransferencia.getIdCuentaRemitente().getIdCuenta());
-            statement.setInt(4, nuevaTransferencia.getIdCuentaDestinatario().getIdCuenta());
-            
-            //5. USAR EL EXECUTE() CORRESPONDIENTE
-            //NOTA DE AUTOR: SIN EL EXECUTE() EL INSERT NO SE "EJECUTARA" VALGAME LA REDUNDANCIA
-            //ES COMO ESTUDIAR PERO NO APRENDER, NO SIRVE DE NADA CREAR UN INSERT SI NO SE VA A INSERTAR EN ALGO(BD)
-            boolean insert = statement.execute();
-            
-            //6. Se crea una nueva transferencia
-            return new Transferencia(null, nuevaTransferencia.getMonto(), nuevaTransferencia.getFechaHora(),
-                                        nuevaTransferencia.getIdCuentaRemitente(), 
-                                        nuevaTransferencia.getIdCuentaDestinatario());
-            
+            return new Transferencia(); 
+
         } catch (SQLException e) {
-            LOGGER.severe(e.getMessage());
+            if (conn != null) {
+                try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
+            }
+            e.printStackTrace();
             throw new PersistenciaException("No se pudo realizar la transferencia", e);
+        } finally {
+            if (conn != null) {
+                try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) { ex.printStackTrace(); }
+            }
         }
     }
+
 
     @Override
     public List<Transferencia> consultarMovimientosCuenta(Integer idCuenta) throws PersistenciaException {
