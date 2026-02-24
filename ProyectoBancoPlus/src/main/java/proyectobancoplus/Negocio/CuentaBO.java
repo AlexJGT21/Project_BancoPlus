@@ -14,7 +14,7 @@ import proyectobancoplus.dtos.NuevoCuentaDTO;
 
 
 //clase cerebro
-public class CuentaBO {
+public class CuentaBO implements ICuentasBO {
 //=======
 //public class CuentaBO implements ICuentaDAO {
 //>>>>>>> 2afb7461fa608908244a88e836c01186d384245f
@@ -47,6 +47,7 @@ public class CuentaBO {
         return cuentaDAO.agregarCuenta(nuevaCuenta);
     }          
 
+    @Override
     public List<Cuenta> obtenerCuentasActivas() throws NegocioException {
         try {
             return cuentaDAO.obtenerCuentasActivas();

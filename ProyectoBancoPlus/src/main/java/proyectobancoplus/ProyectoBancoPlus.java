@@ -64,7 +64,7 @@ public static void mostrarRetiroSinCuenta(){
  * Este metodo mostrara el form de retiro sin cuenta
  */
 ICuentaDAO cuentaDAO = new CuentasDAO();
-ICuentasBO cuentasBO = (ICuentasBO) new CuentaBO(cuentaDAO);
+ICuentasBO cuentasBO = new CuentaBO(cuentaDAO);
 IRetiroSinCuentaDAO retiroDAO = new RetiroSinCuentaDAO();
 IRetiroSinCuentaBO retiroBO = new RetiroSinCuentaBO(retiroDAO);
 RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO, retiroBO);

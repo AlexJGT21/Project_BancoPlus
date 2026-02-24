@@ -12,4 +12,5 @@ public interface IRetiroSinCuentaBO {
     
     public RetiroSinCuenta generarRetiro(NuevoRetiroSinCuentaDTO retiroSinCuentaDTO) throws NegocioException;
     
+    
 }

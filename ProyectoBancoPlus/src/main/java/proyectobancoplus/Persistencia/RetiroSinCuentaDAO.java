@@ -52,4 +52,10 @@ public class RetiroSinCuentaDAO implements IRetiroSinCuentaDAO {
             throw new PersistenciaException("Retiro sin Cuenta no fue posible", e);
         }
     }
+
+    @Override
+    public void actualizarEstadoRetiro(String folio, String contraseña) throws PersistenciaException {
+        
+        
+    }
 }
