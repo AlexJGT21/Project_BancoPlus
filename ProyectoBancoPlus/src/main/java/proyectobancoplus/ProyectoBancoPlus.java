@@ -5,7 +5,9 @@ import proyectobancoplus.Negocio.CuentaBO;
 import proyectobancoplus.Negocio.ICuentasBO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.CuentasDAO;
+import proyectobancoplus.Presentacion.BienvenidaFORM;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
+import proyectobancoplus.Presentacion.MenuFORM;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 import proyectobancoplus.Presentacion.informacionTransferencia;
@@ -18,13 +20,13 @@ public class ProyectoBancoPlus {
 
     public static void main(String[] args) {
 
-        System.out.println("Probando si jala xd");
+        System.out.println("Inciando bancaplus...");
         iniciarBanca();
        
         
     }
     public static void iniciarBanca() {
-        InicioSesionFORM llave = new InicioSesionFORM();
+        BienvenidaFORM llave = new BienvenidaFORM();
         llave.setVisible(true);
     }
 
@@ -42,9 +44,9 @@ public static void mostrarMenu(){
 /**
  * Este metodo mostrara el menu de la banca
  */
-//    MenuForm menu = new MenuForm();
-//    menu.setVisible(true);
-//    
+    MenuFORM menu = new MenuFORM();
+    menu.setVisible(true);
+    
 }
 
 public static void mostrarTransferencia(){
