@@ -3,8 +3,12 @@ package proyectobancoplus;
 
 import proyectobancoplus.Negocio.CuentaBO;
 import proyectobancoplus.Negocio.ICuentasBO;
+import proyectobancoplus.Negocio.IRetiroSinCuentaBO;
+import proyectobancoplus.Negocio.RetiroSinCuentaBO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.CuentasDAO;
+import proyectobancoplus.Persistencia.IRetiroSinCuentaDAO;
+import proyectobancoplus.Persistencia.RetiroSinCuentaDAO;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
@@ -61,7 +65,9 @@ public static void mostrarRetiroSinCuenta(){
  */
 ICuentaDAO cuentaDAO = new CuentasDAO();
 ICuentasBO cuentasBO = (ICuentasBO) new CuentaBO(cuentaDAO);
-RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO);
+IRetiroSinCuentaDAO retiroDAO = new RetiroSinCuentaDAO();
+IRetiroSinCuentaBO retiroBO = new RetiroSinCuentaBO(retiroDAO);
+RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO, retiroBO);
 rsc.setVisible(true);
 }
 

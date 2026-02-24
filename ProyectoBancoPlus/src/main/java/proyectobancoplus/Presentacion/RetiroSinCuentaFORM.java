@@ -3,8 +3,11 @@ package proyectobancoplus.Presentacion;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Entidades.RetiroSinCuenta;
 import proyectobancoplus.Negocio.ICuentasBO;
+import proyectobancoplus.Negocio.IRetiroSinCuentaBO;
 import proyectobancoplus.Negocio.NegocioException;
 import proyectobancoplus.dtos.NuevoRetiroSinCuentaDTO;
 
@@ -16,13 +19,16 @@ import proyectobancoplus.dtos.NuevoRetiroSinCuentaDTO;
 public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     
     private final ICuentasBO cuentaBO;
+    private final IRetiroSinCuentaBO retiroSinCuentaBO;
     
     /**
      * Creates new form RetiroSinCuentaFORM
      * @param cuentaBO
+     * @param retiroSinCuentaBO
      */
-    public RetiroSinCuentaFORM(ICuentasBO cuentaBO) {
+    public RetiroSinCuentaFORM(ICuentasBO cuentaBO, IRetiroSinCuentaBO retiroSinCuentaBO) {
         this.cuentaBO = cuentaBO;
+        this.retiroSinCuentaBO = retiroSinCuentaBO;
         initComponents();
         obtenerCuentas();
     }
@@ -51,8 +57,18 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                 newRDTO.setMonto(monto);
                 newRDTO.setNumCuenta(cuentaSeleccionada);
                 
+                try {
+                    RetiroSinCuenta retiro = retiroSinCuentaBO.generarRetiro(newRDTO);
+                    JOptionPane.showMessageDialog(this, "Proporcione el siguiente: " + "\n" + 
+                                                        "Folio" + retiro.getFolio() + "\n" + 
+                                                        "Contraseña" + retiro.getPassword() + "\n" + 
+                                                        "Para realizar un retiro sin cuenta.");                    
+                } catch (NegocioException ex) {
+                    JOptionPane.showMessageDialog(this, "No se pudo generar 'Retiro Sin Cuenta'", "ERROR RETIRO SIN CUENTA", JOptionPane.ERROR_MESSAGE);
+                }               
             });
         } catch (NegocioException e) {
+            //TODO
         }
     }
 
