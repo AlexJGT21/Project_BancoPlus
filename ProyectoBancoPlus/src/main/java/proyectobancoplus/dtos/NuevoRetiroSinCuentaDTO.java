@@ -10,21 +10,25 @@ import proyectobancoplus.Entidades.Cuenta;
  */
 public class NuevoRetiroSinCuentaDTO {
     
-    private Integer folio;
+    private String folio;
     private String password;
     private Float monto;
-    private GregorianCalendar fechaHoraVencimiento;    //"yyyy-MM-dd HH:mm:ss"
+    private GregorianCalendar fechaHoraRegistro;    //"yyyy-MM-dd HH:mm:ss"
     private Cuenta numCuenta; //IdCuenta
 
-    public NuevoRetiroSinCuentaDTO(Integer folio, String password, Float monto, GregorianCalendar fechaHoraVencimiento, Cuenta numCuenta) {
+    public NuevoRetiroSinCuentaDTO() {
+        
+    }
+    
+    public NuevoRetiroSinCuentaDTO(String folio, String password, Float monto, GregorianCalendar fechaHoraRegistro, Cuenta numCuenta) {
         this.folio = folio;
         this.password = password;
         this.monto = monto;
-        this.fechaHoraVencimiento = fechaHoraVencimiento;
+        this.fechaHoraRegistro = fechaHoraRegistro;
         this.numCuenta = numCuenta;
     }
 
-    public Integer getFolio() {
+    public String getFolio() {
         return folio;
     }
 
@@ -36,11 +40,36 @@ public class NuevoRetiroSinCuentaDTO {
         return monto;
     }
 
-    public GregorianCalendar getFechaHoraVencimiento() {
-        return fechaHoraVencimiento;
+    public GregorianCalendar getFechaHoraRegistro() {
+        return fechaHoraRegistro;
     }
 
     public Cuenta getNumCuenta() {
         return numCuenta;
     }
+
+    /**
+     * NOTA DE AUTOR.
+     * Preguntar al profesor si es correcto los setters en este caso
+     */
+    
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setMonto(Float monto) {
+        this.monto = monto;
+    }
+
+    public void setFechaHoraRegistro(GregorianCalendar fechaHoraRegistro) {
+        this.fechaHoraRegistro = fechaHoraRegistro;
+    }
+
+    public void setNumCuenta(Cuenta numCuenta) {
+        this.numCuenta = numCuenta;
+    }        
 }

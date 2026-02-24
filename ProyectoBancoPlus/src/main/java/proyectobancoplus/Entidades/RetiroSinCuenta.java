@@ -15,7 +15,7 @@ public class RetiroSinCuenta {
     }
     
     private Integer idRetiroSC;
-    private Integer folio;
+    private String folio;
     private String password;
     private Float monto;
     private EstadoOperacion estadoOperacion;
@@ -27,7 +27,7 @@ public class RetiroSinCuenta {
         //Vacio
     }
 
-    public RetiroSinCuenta(Integer idRetiroSC, Integer folio, String password, Float monto, EstadoOperacion estadoOperacion, GregorianCalendar fechaHoraRegistro, GregorianCalendar fechaHoraVencimiento, Cuenta numCuenta) {
+    public RetiroSinCuenta(Integer idRetiroSC, String folio, String password, Float monto, EstadoOperacion estadoOperacion, GregorianCalendar fechaHoraRegistro, GregorianCalendar fechaHoraVencimiento, Cuenta numCuenta) {
         this.idRetiroSC = idRetiroSC;
         this.folio = folio;
         this.password = password;
@@ -46,11 +46,11 @@ public class RetiroSinCuenta {
         this.idRetiroSC = idRetiroSC;
     }
 
-    public Integer getFolio() {
+    public String getFolio() {
         return folio;
     }
 
-    public void setFolio(Integer folio) {
+    public void setFolio(String folio) {
         this.folio = folio;
     }
 

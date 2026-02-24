@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
  * @author Alex García Trejo
  */
 public class Cuenta {
-    
+
     /**
      * Control del estado de cuentas de clientes.
      * 1. Activa: Esta en uso
@@ -23,13 +23,13 @@ public class Cuenta {
     private Float saldoMXN;
     private EstadoCuenta estado; //ACTIVA, CANCELADA
     private GregorianCalendar fechaApertura;
-    private Cliente idCliente;
+    private Cuenta idCliente;
     private String contraseña;
 
     public Cuenta() {
     }
 
-    public Cuenta(Integer idCuenta, Integer numCuenta, Float saldoMXN, EstadoCuenta estado, GregorianCalendar fechaApertura, Cliente idCliente, String contraseña) {
+    public Cuenta(Integer idCuenta, Integer numCuenta, Float saldoMXN, EstadoCuenta estado, GregorianCalendar fechaApertura, Cuenta idCliente, String contraseña) {
         this.idCuenta = idCuenta;
         this.numCuenta = numCuenta;
         this.saldoMXN = saldoMXN;
@@ -79,11 +79,11 @@ public class Cuenta {
         this.fechaApertura = fechaApertura;
     }
 
-    public Cliente getIdCliente() {
+    public Cuenta getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
+    public void setIdCliente(Cuenta idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -93,8 +93,8 @@ public class Cuenta {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
+    }    
+    
     @Override
     public String toString() {
         return "Número de Cuenta: " + numCuenta;

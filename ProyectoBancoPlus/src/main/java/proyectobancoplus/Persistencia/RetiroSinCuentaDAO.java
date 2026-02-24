@@ -24,16 +24,16 @@ public class RetiroSinCuentaDAO implements IRetiroSinCuentaDAO {
             Connection connection = ConexionBD.crearConexion();
             
             String insertSQL = """
-                               INSERT INTO retirosTerceros (folio, contrasenia, monto, fechaHoraVencimiento, idCuenta)
+                               INSERT INTO retirosTerceros (folio, contrasenia, monto, fechaHoraRegistro, idCuenta)
                                VALUES
                                (?, ?, ?, ?, ?);
                                """;
             
             PreparedStatement statement = connection.prepareStatement(insertSQL);
             SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String vencimientoDate = newFormat.format(retiroSinCuenta.getFechaHoraVencimiento().getTime());
+            String vencimientoDate = newFormat.format(retiroSinCuenta.getFechaHoraRegistro().getTime());
             
-            statement.setInt(1, retiroSinCuenta.getFolio());
+            statement.setString(1, retiroSinCuenta.getFolio());
             statement.setString(2, retiroSinCuenta.getPassword());
             statement.setFloat(3, retiroSinCuenta.getMonto());
             statement.setString(4, vencimientoDate);
@@ -42,7 +42,7 @@ public class RetiroSinCuentaDAO implements IRetiroSinCuentaDAO {
             boolean insert = statement.execute();
             
             return new RetiroSinCuenta(null, retiroSinCuenta.getFolio(), retiroSinCuenta.getPassword(), retiroSinCuenta.getMonto(),
-                                       null, null, retiroSinCuenta.getFechaHoraVencimiento(),
+                                       null, null, retiroSinCuenta.getFechaHoraRegistro(),
                                        retiroSinCuenta.getNumCuenta());
         } catch (SQLException e) {
             LOGGER.severe(e.getMessage());

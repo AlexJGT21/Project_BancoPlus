@@ -6,7 +6,6 @@ import proyectobancoplus.Negocio.ICuentasBO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.CuentasDAO;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
-import proyectobancoplus.Presentacion.MenuForm;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 import proyectobancoplus.Presentacion.informacionTransferencia;
@@ -19,7 +18,7 @@ public class ProyectoBancoPlus {
 
     public static void main(String[] args) {
 
-        System.out.println("probando probando we");
+        System.out.println("Probando si jala xd");
         iniciarBanca();
        
         
@@ -43,9 +42,9 @@ public static void mostrarMenu(){
 /**
  * Este metodo mostrara el menu de la banca
  */
-    MenuForm menu = new MenuForm();
-    menu.setVisible(true);
-    
+//    MenuForm menu = new MenuForm();
+//    menu.setVisible(true);
+//    
 }
 
 public static void mostrarTransferencia(){
@@ -61,7 +60,7 @@ public static void mostrarRetiroSinCuenta(){
  * Este metodo mostrara el form de retiro sin cuenta
  */
 ICuentaDAO cuentaDAO = new CuentasDAO();
-ICuentasBO cuentasBO = new CuentaBO(cuentaDAO);
+ICuentasBO cuentasBO = (ICuentasBO) new CuentaBO(cuentaDAO);
 RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO);
 rsc.setVisible(true);
 }

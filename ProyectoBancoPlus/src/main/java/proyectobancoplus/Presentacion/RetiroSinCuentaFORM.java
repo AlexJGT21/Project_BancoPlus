@@ -6,6 +6,7 @@ import javax.swing.DefaultComboBoxModel;
 import proyectobancoplus.Entidades.Cuenta;
 import proyectobancoplus.Negocio.ICuentasBO;
 import proyectobancoplus.Negocio.NegocioException;
+import proyectobancoplus.dtos.NuevoRetiroSinCuentaDTO;
 
 /**
  *
@@ -43,7 +44,12 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
             jComboBox1.setModel(dcbm);
             
             btnGenerar.addActionListener(e ->{
+                Cuenta cuentaSeleccionada = (Cuenta) jComboBox1.getSelectedItem();
+                float monto = Float.parseFloat(textCantidad.getText());
                 
+                NuevoRetiroSinCuentaDTO newRDTO = new NuevoRetiroSinCuentaDTO();
+                newRDTO.setMonto(monto);
+                newRDTO.setNumCuenta(cuentaSeleccionada);
                 
             });
         } catch (NegocioException e) {

@@ -8,7 +8,7 @@ C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\sr
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Entidades\Transferencia.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\CuentaBO.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\ICuentasBO.java
-C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\IRetiroSinCuenta.java
+C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\IRetiroSinCuentaBO.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\ITransferencias.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\NegocioException.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Negocio\RetiroSinCuentaBO.java
@@ -19,13 +19,12 @@ C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\sr
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\IRetiroSinCuentaDAO.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\ITransferenciaDAO.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\PersistenciaException.java
+C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\PruebaConexion.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\RetiroSinCuentaDAO.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Persistencia\TransferenciaDAO.java
-C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\AltaCuentaForm.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\BajaCuentaForm.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\informacionTransferencia.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\InicioSesionFORM.java
-C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\MenuForm.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\RetiroSinCuentaFORM.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\Presentacion\TransferenciaForm.java
 C:\Users\maild\OneDrive\Documentos\GitHub\Project_BancoPlus\ProyectoBancoPlus\src\main\java\proyectobancoplus\ProyectoBancoPlus.java
