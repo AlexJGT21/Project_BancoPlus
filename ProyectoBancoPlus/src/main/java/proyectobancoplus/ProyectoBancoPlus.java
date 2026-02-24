@@ -3,11 +3,13 @@ package proyectobancoplus;
 
 import proyectobancoplus.Negocio.CuentaBO;
 import proyectobancoplus.Negocio.ICuentasBO;
+import proyectobancoplus.Negocio.IRetiroSinCuentaBO;
+import proyectobancoplus.Negocio.RetiroSinCuentaBO;
 import proyectobancoplus.Persistencia.ICuentaDAO;
 import proyectobancoplus.Persistencia.CuentasDAO;
-import proyectobancoplus.Presentacion.BienvenidaFORM;
+import proyectobancoplus.Persistencia.IRetiroSinCuentaDAO;
+import proyectobancoplus.Persistencia.RetiroSinCuentaDAO;
 import proyectobancoplus.Presentacion.InicioSesionFORM;
-import proyectobancoplus.Presentacion.MenuFORM;
 import proyectobancoplus.Presentacion.RetiroSinCuentaFORM;
 import proyectobancoplus.Presentacion.TransferenciaForm;
 import proyectobancoplus.Presentacion.informacionTransferencia;
@@ -20,13 +22,13 @@ public class ProyectoBancoPlus {
 
     public static void main(String[] args) {
 
-        System.out.println("Inciando bancaplus...");
+        System.out.println("Probando si jala xd");
         iniciarBanca();
        
         
     }
     public static void iniciarBanca() {
-        BienvenidaFORM llave = new BienvenidaFORM();
+        InicioSesionFORM llave = new InicioSesionFORM();
         llave.setVisible(true);
     }
 
@@ -44,9 +46,9 @@ public static void mostrarMenu(){
 /**
  * Este metodo mostrara el menu de la banca
  */
-    MenuFORM menu = new MenuFORM();
-    menu.setVisible(true);
-    
+//    MenuForm menu = new MenuForm();
+//    menu.setVisible(true);
+//    
 }
 
 public static void mostrarTransferencia(){
@@ -63,7 +65,9 @@ public static void mostrarRetiroSinCuenta(){
  */
 ICuentaDAO cuentaDAO = new CuentasDAO();
 ICuentasBO cuentasBO = (ICuentasBO) new CuentaBO(cuentaDAO);
-RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO);
+IRetiroSinCuentaDAO retiroDAO = new RetiroSinCuentaDAO();
+IRetiroSinCuentaBO retiroBO = new RetiroSinCuentaBO(retiroDAO);
+RetiroSinCuentaFORM rsc = new RetiroSinCuentaFORM(cuentasBO, retiroBO);
 rsc.setVisible(true);
 }
 

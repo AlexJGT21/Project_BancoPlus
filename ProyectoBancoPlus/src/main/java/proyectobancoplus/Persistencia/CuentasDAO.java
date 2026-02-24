@@ -13,7 +13,7 @@ import proyectobancoplus.Entidades.Cuenta;
 
 /**
  *
- * @author Alex García Trejo
+ * @author Alex GarcÃ­a Trejo
  */
 public class CuentasDAO implements ICuentaDAO {
 
