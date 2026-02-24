@@ -1,0 +1,206 @@
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bancoplus
+-- ------------------------------------------------------
+-- Server version	9.2.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clientes` (
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `apellidoMaterno` varchar(100) NOT NULL,
+  `apellidoPaterno` varchar(100) NOT NULL,
+  `calle` varchar(50) NOT NULL,
+  `colonia` varchar(50) NOT NULL,
+  `codigoPostal` varchar(4) NOT NULL,
+  `numCasa` varchar(10) NOT NULL,
+  `fechaNacimiento` date NOT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'Carlos','Lopez','Ramirez','Morelos','Centro','8500','123','1995-03-15'),(2,'Ana','Martinez','Gomez','Guerrero','Reforma','8510','45B','1998-07-22'),(3,'Luis','Hernandez','Torres','Allende','Norte','8520','78','1992-11-10');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cuentas`
+--
+
+DROP TABLE IF EXISTS `cuentas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cuentas` (
+  `idCuenta` int NOT NULL AUTO_INCREMENT,
+  `numCuenta` int NOT NULL,
+  `saldoMXN` decimal(15,2) NOT NULL,
+  `estado` enum('activa','cancelada') NOT NULL,
+  `fechaApertura` date NOT NULL,
+  `idCliente` int NOT NULL,
+  `contraseña` varchar(8) NOT NULL,
+  PRIMARY KEY (`idCuenta`),
+  KEY `fk_cuentaCliente` (`idCliente`),
+  CONSTRAINT `fk_cuentaCliente` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cuentas`
+--
+
+LOCK TABLES `cuentas` WRITE;
+/*!40000 ALTER TABLE `cuentas` DISABLE KEYS */;
+INSERT INTO `cuentas` VALUES (1,100001,15000.00,'cancelada','2024-01-10',1,'abc12345'),(2,100002,8200.50,'activa','2024-02-18',2,'pass2024'),(3,100003,23000.75,'activa','2024-03-05',3,'clave789'),(4,58261903,500.00,'activa','2026-02-24',1,'7cc276'),(5,61903249,500.00,'activa','2026-02-24',1,'fae4b2');
+/*!40000 ALTER TABLE `cuentas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `historial_transacciones_clientes`
+--
+
+DROP TABLE IF EXISTS `historial_transacciones_clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `historial_transacciones_clientes` (
+  `idHistorial` int NOT NULL AUTO_INCREMENT,
+  `IdTransferencia` int DEFAULT NULL,
+  `idCuentaRemitente` int DEFAULT NULL,
+  `saldoRemitente` decimal(15,2) DEFAULT NULL,
+  `idCuentaDestinatario` decimal(15,2) DEFAULT NULL,
+  `saldoDestinatario` int DEFAULT NULL,
+  `fechaHora` datetime DEFAULT NULL,
+  PRIMARY KEY (`idHistorial`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `historial_transacciones_clientes`
+--
+
+LOCK TABLES `historial_transacciones_clientes` WRITE;
+/*!40000 ALTER TABLE `historial_transacciones_clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historial_transacciones_clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `retirosterceros`
+--
+
+DROP TABLE IF EXISTS `retirosterceros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `retirosterceros` (
+  `idRetiro` int NOT NULL AUTO_INCREMENT,
+  `folio` varchar(8) NOT NULL,
+  `contrasenia` varchar(8) NOT NULL,
+  `monto` decimal(15,2) NOT NULL,
+  `estadoOperacion` enum('PENDIENTE','COBRADO','NO COBRADO') DEFAULT NULL,
+  `fechaHoraRegistro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fechaHoraVencimiento` datetime NOT NULL,
+  `idCuenta` int NOT NULL,
+  PRIMARY KEY (`idRetiro`),
+  KEY `fk_cuentaRetira` (`idCuenta`),
+  CONSTRAINT `fk_cuentaRetira` FOREIGN KEY (`idCuenta`) REFERENCES `cuentas` (`idCuenta`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `retirosterceros`
+--
+
+LOCK TABLES `retirosterceros` WRITE;
+/*!40000 ALTER TABLE `retirosterceros` DISABLE KEYS */;
+INSERT INTO `retirosterceros` VALUES (1,'FOL12345','RET12345',1200.00,'PENDIENTE','2026-02-23 23:59:45','2026-02-25 23:59:00',1),(2,'FOL67890','RET67890',500.00,'PENDIENTE','2026-02-23 23:59:45','2026-02-26 23:59:00',2),(3,'FOL54321','RET54321',3000.00,'PENDIENTE','2026-02-23 23:59:45','2026-02-27 23:59:00',3),(4,'F-000001','59074155',500.00,'PENDIENTE','2026-02-24 05:05:41','2026-02-24 05:15:41',2),(5,'F-000001','12959598',100.00,'PENDIENTE','2026-02-24 12:50:20','2026-02-24 13:00:20',4);
+/*!40000 ALTER TABLE `retirosterceros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transferencias`
+--
+
+DROP TABLE IF EXISTS `transferencias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transferencias` (
+  `idTransferencia` int NOT NULL AUTO_INCREMENT,
+  `monto` decimal(15,2) NOT NULL,
+  `fechaHora` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `idCuentaRemitente` int NOT NULL,
+  `idCuentaDestinatario` int NOT NULL,
+  PRIMARY KEY (`idTransferencia`),
+  KEY `fk_cuentaRemitente` (`idCuentaRemitente`),
+  KEY `fk_cuentaDestinatario` (`idCuentaDestinatario`),
+  CONSTRAINT `fk_cuentaDestinatario` FOREIGN KEY (`idCuentaDestinatario`) REFERENCES `cuentas` (`idCuenta`),
+  CONSTRAINT `fk_cuentaRemitente` FOREIGN KEY (`idCuentaRemitente`) REFERENCES `cuentas` (`idCuenta`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transferencias`
+--
+
+LOCK TABLES `transferencias` WRITE;
+/*!40000 ALTER TABLE `transferencias` DISABLE KEYS */;
+INSERT INTO `transferencias` VALUES (1,1500.00,'2026-02-23 23:59:03',1,2),(2,750.50,'2026-02-23 23:59:03',2,3),(3,2000.00,'2026-02-23 23:59:03',3,1);
+/*!40000 ALTER TABLE `transferencias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transferencias_clientes`
+--
+
+DROP TABLE IF EXISTS `transferencias_clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transferencias_clientes` (
+  `idTransferencia` int NOT NULL AUTO_INCREMENT,
+  `idClienteRemitente` int DEFAULT NULL,
+  `idClienteDestinatario` int DEFAULT NULL,
+  `monto` decimal(10,0) DEFAULT NULL,
+  `fechaTransferencia` datetime DEFAULT NULL,
+  PRIMARY KEY (`idTransferencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transferencias_clientes`
+--
+
+LOCK TABLES `transferencias_clientes` WRITE;
+/*!40000 ALTER TABLE `transferencias_clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transferencias_clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-02-24 14:47:43
