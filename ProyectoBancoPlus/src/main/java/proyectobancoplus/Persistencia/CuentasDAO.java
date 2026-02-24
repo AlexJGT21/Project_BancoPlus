@@ -26,37 +26,48 @@ public class CuentasDAO implements ICuentaDAO {
         
         try {
             Connection conexion = ConexionBD.crearConexion();
-                String sql = "INSERT INTO cuentas (idCuenta, saldoMXN, estado, idCliente) VALUES (?, ?, 'ACTIVA', ?)";
-                PreparedStatement ps = conexion.prepareStatement(sql);
-
+        
+            
+            String sql = "INSERT INTO cuentas (numCuenta, saldoMXN, estado, fechaApertura, idCliente, contraseÃ±a) VALUES (?, ?, 'activa', CURDATE(), ?, ?)";                
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            String contra = java.util.UUID.randomUUID().toString().substring(0, 6);
             
             ps.setInt(1, nuevaCuenta.getNumCuenta());            
             ps.setFloat(2, nuevaCuenta.getSaldoMXN());
             ps.setInt(3, nuevaCuenta.getIdCliente().getIdCliente());
-            
+            ps.setString(4, contra);
             ps.executeUpdate();
             
             return nuevaCuenta;
         
     }catch (SQLException e) {
-            throw new PersistenciaException("Error al registrar al cliente en sql", null);
+        //linea q sigue el error cochino que no me deja existir
+        e.printStackTrace();
+        
+        throw new PersistenciaException("Error al registrar al cliente en sql", null);
         }
     }
     @Override
-    public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
-        //logica del dar de bajar cuenta
-        //codigo pa sql
-        String sql = "UPDATE cuentas SET estado = 'CANCELADA' WHERE idCuenta = ?";
+    public void cancelarCuenta(Integer numCuenta) throws PersistenciaException {
+        String sql = "UPDATE cuentas SET estado = 'Cancelada' WHERE numCuenta = ?";
         
         try (Connection conn = ConexionBD.crearConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
-            ps.setInt(1, idCuenta);
-            ps.executeUpdate();
+            ps.setInt(1, numCuenta);
+            
+            int filasModificadas = ps.executeUpdate();
+
+            if (filasModificadas == 0) {
+                throw new PersistenciaException("No hay cuenta pa cancelar", null);
+            }
             
         } catch (SQLException e) {
-            throw new PersistenciaException("Error al cancelar la cuenta del cliente en sql", null);
+            e.printStackTrace(); 
+            throw new PersistenciaException("Error con la conexion en sql", e);
         }
+        
+        
     }
 
     @Override
