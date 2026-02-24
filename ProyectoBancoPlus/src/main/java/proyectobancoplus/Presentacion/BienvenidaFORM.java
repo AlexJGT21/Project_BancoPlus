@@ -91,7 +91,6 @@ public class BienvenidaFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRetirarSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarSinCuentaActionPerformed
-        proyectobancoplus.ProyectoBancoPlus.mostrarRetiroSinCuenta();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRetirarSinCuentaActionPerformed

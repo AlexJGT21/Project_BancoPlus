@@ -4,6 +4,8 @@
  */
 package proyectobancoplus.Presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author melis
@@ -15,6 +17,7 @@ public class MenuFORM extends javax.swing.JFrame {
      */
     public MenuFORM() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -129,7 +132,14 @@ public class MenuFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearCuentaNuevaActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
+int c=JOptionPane.showConfirmDialog(this,"Seguro que quiere cerrar la sesoin",
+        "Cerrar Ssesion",JOptionPane.YES_NO_OPTION);
+        if (c==JOptionPane.YES_OPTION) {
+            proyectobancoplus.ProyectoBancoPlus.iniciarBanca();
+            this.dispose();
+        }
+    
+// TODO add your handling code here:
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnMasCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasCuentasActionPerformed
@@ -138,6 +148,7 @@ public class MenuFORM extends javax.swing.JFrame {
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
         // TODO add your handling code here:
+        proyectobancoplus.ProyectoBancoPlus.mostrarTransferencia();
     }//GEN-LAST:event_btnTransferirActionPerformed
 
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
