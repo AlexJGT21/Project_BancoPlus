@@ -30,7 +30,7 @@ public class BajaCuentaForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCuentas = new javax.swing.JTextArea();
         btnAceptar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,10 +47,10 @@ public class BajaCuentaForm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -65,7 +65,7 @@ public class BajaCuentaForm extends javax.swing.JFrame {
                             .addGap(109, 109, 109)
                             .addComponent(btnAceptar)
                             .addGap(34, 34, 34)
-                            .addComponent(jButton2)
+                            .addComponent(btnCancelar)
                             .addGap(25, 25, 25))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(82, 82, 82)
@@ -85,7 +85,7 @@ public class BajaCuentaForm extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancelar))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
@@ -122,10 +122,10 @@ public class BajaCuentaForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +164,7 @@ public class BajaCuentaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtCuentas;

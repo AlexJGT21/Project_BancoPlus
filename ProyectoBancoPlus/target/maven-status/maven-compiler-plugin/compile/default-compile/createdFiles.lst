@@ -4,6 +4,7 @@ proyectobancoplus\Presentacion\AltaCuentaForm$4.class
 proyectobancoplus\Presentacion\BajaCuentaForm$2.class
 proyectobancoplus\Presentacion\BajaCuentaForm.class
 proyectobancoplus\Presentacion\TransferenciaForm$2.class
+proyectobancoplus\Presentacion\TransferenciaForm$6.class
 proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
 proyectobancoplus\Entidades\Cuenta.class
 proyectobancoplus\Persistencia\CuentasDAO.class

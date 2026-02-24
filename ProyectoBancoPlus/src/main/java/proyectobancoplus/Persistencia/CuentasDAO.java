@@ -28,14 +28,12 @@ public class CuentasDAO implements ICuentaDAO {
             Connection conexion = ConexionBD.crearConexion();
         
             
-            String sql = "INSERT INTO cuentas (numCuenta, saldoMXN, estado, fechaApertura, idCliente, contraseÃ±a) VALUES (?, ?, 'activa', CURDATE(), ?, ?)";                
+            String sql = "INSERT INTO cuentas (numCuenta, saldoMXN, estado, fechaApertura, idCliente, contraseÃ±a) VALUES (?, ?, 'activa', CURDATE(), ?, 'hola123')";                
             PreparedStatement ps = conexion.prepareStatement(sql);
-            String contra = java.util.UUID.randomUUID().toString().substring(0, 6);
             
             ps.setInt(1, nuevaCuenta.getNumCuenta());            
             ps.setFloat(2, nuevaCuenta.getSaldoMXN());
             ps.setInt(3, nuevaCuenta.getIdCliente().getIdCliente());
-            ps.setString(4, contra);
             ps.executeUpdate();
             
             return nuevaCuenta;
