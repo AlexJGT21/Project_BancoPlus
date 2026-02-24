@@ -1,4 +1,5 @@
 proyectobancoplus\Entidades\Transferencia.class
+proyectobancoplus\Negocio\IRetiroSinCuentaBO.class
 proyectobancoplus\Presentacion\TransferenciaForm$4.class
 proyectobancoplus\dtos\NuevoRetiroSinCuentaDTO.class
 proyectobancoplus\Presentacion\InicioSesionFORM$3.class
@@ -7,15 +8,14 @@ proyectobancoplus\Persistencia\ConexionBD.class
 proyectobancoplus\Presentacion\BajaCuentaForm.class
 proyectobancoplus\Presentacion\TransferenciaForm$2.class
 proyectobancoplus\Persistencia\RetiroSinCuentaDAO.class
-proyectobancoplus\Presentacion\AltaCuentaForm.class
 proyectobancoplus\Entidades\Cuenta$EstadoCuenta.class
 proyectobancoplus\Entidades\Cuenta.class
 proyectobancoplus\Persistencia\CuentasDAO.class
 proyectobancoplus\Entidades\RetiroSinCuenta.class
 proyectobancoplus\Presentacion\InicioSesionFORM.class
 proyectobancoplus\Entidades\Cliente.class
+proyectobancoplus\Negocio\RetiroSinCuentaBO.class
 proyectobancoplus\Persistencia\IRetiroSinCuentaDAO.class
-proyectobancoplus\Presentacion\AltaCuentaForm$1.class
 proyectobancoplus\dtos\NuevoCuentaDTO$EstadoCuenta.class
 proyectobancoplus\Negocio\ITransferencias.class
 proyectobancoplus\Persistencia\ICuentaDAO.class
@@ -23,8 +23,6 @@ proyectobancoplus\Persistencia\ITransferenciaDAO.class
 proyectobancoplus\Negocio\CuentaBO.class
 proyectobancoplus\Presentacion\TransferenciaForm.class
 proyectobancoplus\Persistencia\PruebaConexion.class
-proyectobancoplus\Presentacion\AltaCuentaForm$3.class
-proyectobancoplus\Negocio\IRetiroSinCuenta.class
 proyectobancoplus\Presentacion\InicioSesionFORM$4.class
 proyectobancoplus\Presentacion\RetiroSinCuentaFORM.class
 proyectobancoplus\Presentacion\TransferenciaForm$3.class
@@ -40,7 +38,6 @@ proyectobancoplus\Negocio\ICuentasBO.class
 proyectobancoplus\Presentacion\informacionTransferencia.class
 proyectobancoplus\Presentacion\TransferenciaForm$1.class
 proyectobancoplus\Entidades\RetiroSinCuenta$EstadoOperacion.class
-proyectobancoplus\Presentacion\AltaCuentaForm$2.class
 proyectobancoplus\ProyectoBancoPlus.class
 proyectobancoplus\dtos\NuevoCuentaDTO.class
 proyectobancoplus\dtos\NuevoTransferenciaDTO.class

@@ -3,9 +3,13 @@ package proyectobancoplus.Presentacion;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import proyectobancoplus.Entidades.Cuenta;
+import proyectobancoplus.Entidades.RetiroSinCuenta;
 import proyectobancoplus.Negocio.ICuentasBO;
+import proyectobancoplus.Negocio.IRetiroSinCuentaBO;
 import proyectobancoplus.Negocio.NegocioException;
+import proyectobancoplus.dtos.NuevoRetiroSinCuentaDTO;
 
 /**
  *
@@ -15,13 +19,16 @@ import proyectobancoplus.Negocio.NegocioException;
 public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     
     private final ICuentasBO cuentaBO;
+    private final IRetiroSinCuentaBO retiroSinCuentaBO;
     
     /**
      * Creates new form RetiroSinCuentaFORM
      * @param cuentaBO
+     * @param retiroSinCuentaBO
      */
-    public RetiroSinCuentaFORM(ICuentasBO cuentaBO) {
+    public RetiroSinCuentaFORM(ICuentasBO cuentaBO, IRetiroSinCuentaBO retiroSinCuentaBO) {
         this.cuentaBO = cuentaBO;
+        this.retiroSinCuentaBO = retiroSinCuentaBO;
         initComponents();
         obtenerCuentas();
     }
@@ -42,11 +49,26 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
             }
             jComboBox1.setModel(dcbm);
             
-            btnConfirmar.addActionListener(e ->{
+            btnGenerar.addActionListener(e ->{
+                Cuenta cuentaSeleccionada = (Cuenta) jComboBox1.getSelectedItem();
+                float monto = Float.parseFloat(textCantidad.getText());
                 
+                NuevoRetiroSinCuentaDTO newRDTO = new NuevoRetiroSinCuentaDTO();
+                newRDTO.setMonto(monto);
+                newRDTO.setNumCuenta(cuentaSeleccionada);
                 
+                try {
+                    RetiroSinCuenta retiro = retiroSinCuentaBO.generarRetiro(newRDTO);
+                    JOptionPane.showMessageDialog(this, "Proporcione el siguiente: " + "\n" + 
+                                                        "Folio" + retiro.getFolio() + "\n" + 
+                                                        "Contraseña" + retiro.getPassword() + "\n" + 
+                                                        "Para realizar un retiro sin cuenta.");                    
+                } catch (NegocioException ex) {
+                    JOptionPane.showMessageDialog(this, "No se pudo generar 'Retiro Sin Cuenta'", "ERROR RETIRO SIN CUENTA", JOptionPane.ERROR_MESSAGE);
+                }               
             });
         } catch (NegocioException e) {
+            //TODO
         }
     }
 
@@ -63,7 +85,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGenerar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -71,7 +93,6 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textCantidad = new javax.swing.JTextField();
-        btnConfirmar = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -86,9 +107,9 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setText("BancoPlusMXN");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 102));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Generar Folio y Contraseña");
+        btnGenerar.setBackground(new java.awt.Color(0, 255, 102));
+        btnGenerar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnGenerar.setText("Generar Folio y Contraseña");
 
         jButton2.setBackground(new java.awt.Color(204, 51, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -107,10 +128,6 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setText("$");
 
-        btnConfirmar.setBackground(new java.awt.Color(51, 255, 51));
-        btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnConfirmar.setText("Confirmar Operación");
-
         javax.swing.GroupLayout panelConfirmacionLayout = new javax.swing.GroupLayout(panelConfirmacion);
         panelConfirmacion.setLayout(panelConfirmacionLayout);
         panelConfirmacionLayout.setHorizontalGroup(
@@ -122,25 +139,22 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGroup(panelConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConfirmacionLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(92, Short.MAX_VALUE))
                     .addGroup(panelConfirmacionLayout.createSequentialGroup()
-                        .addGroup(panelConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(textCantidad))
+                        .addComponent(textCantidad)
                         .addGap(26, 26, 26))))
         );
         panelConfirmacionLayout.setVerticalGroup(
             panelConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConfirmacionLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jLabel3)
-                .addGap(35, 35, 35)
                 .addGroup(panelConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelConfirmacionLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(63, 63, 63)
+                        .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -151,11 +165,11 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnGenerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
@@ -175,7 +189,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 18, Short.MAX_VALUE))
@@ -248,8 +262,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<Cuenta> jComboBox1;
